@@ -1,2 +1,3 @@
 # skly-cms
-Final Year Project For SKLY
+
+Final Year Project For fulfilling diploma requirement
