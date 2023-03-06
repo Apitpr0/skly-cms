@@ -1,3 +1,4 @@
+"use client"
 import indexAssets from "@/assets/indexAssets"
 import { Avatar } from "@mui/material"
 import Image from "next/image"
@@ -29,12 +30,10 @@ function navbar() {
           <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Blog</a>
         </li>
         <li>
-          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Hubungi Kamid</a>
+          <a href="#" className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Hubungi Kami</a>
         </li>
         <li>
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-<Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-<Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
+        <Avatar alt="BobRamen" src={indexAssets.profilepic } />
         </li>
       </ul>
     </div>
