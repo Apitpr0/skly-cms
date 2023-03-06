@@ -1,6 +1,7 @@
+import HomeSection from "./(pages)/home/HomeSection";
 
 export default function Home() {
   return (
-  <div>homepage bro</div>
+  <HomeSection/>
   )
 }
