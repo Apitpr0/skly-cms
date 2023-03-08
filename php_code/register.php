@@ -1,26 +1,33 @@
 <?php
 require('db_connection.php'); //pointing to our db connection
-$msg="";
-if(isset($_POST['submit'])) //if someone press submit
-{
-    $ic=$_POST['ic'];
-    $password=$_POST['password'];
-    $cPass=$_POST['cpass'];
+$msg = "";
+if(isset($_POST['submit'])) {
+    $ic = ($_POST['ic']);
+    $password = $_POST['password'];
+    $cPass = $_POST['cpass'];
 
-if($password != $cPass)
-{
-    $msg="Please check your password";
-}
-else
-{
-    //hash password
-    $passwordHash=password_hash($password,PASSWORD_DEFAULT);
-    $query="INSERT INTO USERS (ic,password) VALUES ($ic','$password')";
-    mysqli_query($connection,$query) or die(mysqli_error($connection));
-    $msg="Register Successful";
-}
+    // Check if passwords match
+    if($password != $cPass) {
+        $msg = "Passwords do not match";
+    }
+    // Check password length and complexity
+    elseif(strlen($password) < 8 || !preg_match("#[0-9]+#", $password) || !preg_match("#[a-zA-Z]+#", $password)) {
+        $msg = "Password must be at least 8 characters long and contain at least one letter and one number";
+    }
+    else {
+        // Hash password
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Insert user data into database
+        $query = "INSERT INTO USERS (ic, password) VALUES ('$ic', '$passwordHash')";
+        mysqli_query($connection, $query) or die(mysqli_error($connection));
+
+        $msg = "Registration successful";
+    }
+    echo $msg;
 }
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +52,7 @@ else
     <form method="post" action="register.php">
      <input class="form-control" type="textbox" name="ic" placeholder="IC" required="true"><br>
      <input class="form-control" type="password" name="password" placeholder="Password" required="true"><br>
-     <input class="form-control" type="password" name="cPass" placeholder="Confirm Password" required="true"><br>
+     <input class="form-control" type="password" name="cpass" placeholder="Confirm Password" required="true"><br>
      <input class="btn btn-primary" type="submit" name="submit" placeholder="Submit"><br>
     </form>
 
