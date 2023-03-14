@@ -1,5 +1,5 @@
 <?php
-include('db_connection.php');
+include('components/db_connection.php');
 $msg = "";
 
 if (isset($_POST['submit'])) {  
