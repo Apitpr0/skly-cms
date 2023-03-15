@@ -15,6 +15,7 @@ include "components/navbar.php";
 </body>
 </html>
 
+<head>
 <h1 style="font-family:verdana;">Ruang Pengakuan</h1>
 
 <body style="text-align:center;">
@@ -25,7 +26,7 @@ include "components/navbar.php";
   <input type="text" id="confession" name="confession"><br><br>
   <button  type="submit">Hantar</button>
 </form>
-
+</head>
 </body>
 </html>
 
