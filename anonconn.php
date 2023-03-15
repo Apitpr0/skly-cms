@@ -14,3 +14,18 @@ include "components/navbar.php";
     
 </body>
 </html>
+
+<h1 style="font-family:verdana;">Ruang Pengakuan</h1>
+
+<body style="text-align:center;">
+<html>
+    
+<form action="submit_confession.php">
+  <label for="conffession">Pengakuan anda:</label><br>
+  <input type="text" id="confession" name="confession"><br><br>
+  <button  type="submit">Hantar</button>
+</form>
+
+</body>
+</html>
+
