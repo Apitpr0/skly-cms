@@ -34,15 +34,16 @@ include "components/navbar.php"
           <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
             <a href="#">
               <span class="absolute inset-0"></span>
-              Tajuk bla2
+              Info Terkini
             </a>
           </h3>
-          <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
+          <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3">Cara Rawatan Penyakit Mental </p>
+          <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">Jenis-Jenis Penyakit Mental Yang Perlukan Rawatan:- Neurosis & Psikosis Penyakit mental organik seperti nyanyuk Gangguan personaliti Psikiatri di kalangan kanak-kanak seperti autism dan hipe... </p>
         </div>
         <div class="relative mt-8 flex items-center gap-x-4">
           <div class="text-sm leading-6">
             <p class="font-semibold text-gray-900">
-              </a>
+            <a href="https://mmha.org.my/article-listing/bahasa-malaysia/cara-rawatan-penyakit-mental"> Read more..</a>
             </p>
 
           </div>
