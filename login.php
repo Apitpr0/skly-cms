@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
 ?>
 <div class="mt-10 flex justify-center">
   <div class="text-center">
-    <img src="" alt="Logo"><br><br>
+    <img src="Components/assets/img/school_logo.png" alt="Logo"><br><br>
     <h4 class="text-lg font-bold">Selamat Kembali, sila daftar masuk</h4><br>
     <?php 
      if(isset($msg)) {

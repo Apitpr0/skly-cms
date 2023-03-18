@@ -2,6 +2,7 @@
 include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
+include('Components/auth.php');
 
 // Start the session before any output is sent to the browser
 if(isset($_POST['submit'])){

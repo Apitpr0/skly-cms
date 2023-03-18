@@ -1,6 +1,7 @@
 <?php
 // Include database connection code
 include('Components/db/db_connection.php');
+include('Components/auth.php');
 
 // Check if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
