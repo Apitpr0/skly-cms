@@ -9,5 +9,4 @@ if(!$select_db)
 {
     die("Database selection failed".mysqli_error($connection)); //failed statement
 }
-echo "Database is successfully connected."
 ?>
