@@ -14,7 +14,7 @@ include('Components/auth.php');
                 Cari Kaunselor Yang Tepat Untuk Membantu Anda
 			</p>
 			<div class="flex flex-col space-y-4 sm:items-center sm:justify-center sm:flex-row sm:space-y-0 sm:space-x-4 lg:justify-start">
-				<a rel="noopener noreferrer" href="#" class="px-8 py-3 text-lg font-semibold rounded bg-pink-400 text-white">TEMPAH</a>
+				<a rel="noopener noreferrer" href="booking.php" class="px-8 py-3 text-lg font-semibold rounded bg-pink-400 text-white">TEMPAH</a>
 			</div>
 		</div>
 		<div class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">

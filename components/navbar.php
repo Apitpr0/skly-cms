@@ -4,9 +4,10 @@ session_start();
 
 $links = array(
   array("name" => "Home", "url" => "index.php"),
-  array("name" => "Tempah", "url" => "#"),
+  array("name" => "Tempah", "url" => "booking.php"),
   array("name" => "Pengakuan", "url" => "anonconn.php"),
-  array("name" => "Blog", "url" => "blog.php")
+  array("name" => "Blog", "url" => "blog.php"),
+  array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
 
 $ic = $_SESSION['ic'];

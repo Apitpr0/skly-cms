@@ -52,7 +52,7 @@ if (isset($_POST['submit'])) {
     <form method="post" action="login.php">
      <input class="border border-gray-300 p-2 rounded-md w-64" type="" name="ic" placeholder="No Kad Pengenalan" required><br>
      <input class="border border-gray-300 p-2 rounded-md w-64 mt-2" type="password" name="password" placeholder="Kata Laluan" required><br>
-     <input class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2" type="submit" name="submit" value="Login"><br>
+     <input class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2" type="submit" name="submit" value="Log Masuk"><br>
      <a href="register.php" class="mt-2 inline-block">Belum mempunyai akaun? Daftar di sini.</a>
     </form>
    </div>
