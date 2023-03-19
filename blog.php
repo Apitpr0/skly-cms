@@ -46,6 +46,17 @@ include "components/navbar.php"
             <a href="https://mmha.org.my/article-listing/bahasa-malaysia/cara-rawatan-penyakit-mental"> Read more..</a>
             </p>
 
+            <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3">About Mental Health </p>
+          <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">What is Mental Health? </p>
+          <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+          </iframe>
+
+        </div>
+        <div class="relative mt-8 flex items-center gap-x-4">
+          <div class="text-sm leading-6">
+            <p class="font-semibold text-gray-900">
+            </p>
+
           </div>
         </div>
       </article>
