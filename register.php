@@ -1,5 +1,5 @@
 <?php
-require('components/db_connection.php'); //pointing to our db connection
+require('components/db/db_connection.php'); //pointing to our db connection
 $msg = "";
 if(isset($_POST['submit'])) {
     $ic = ($_POST['ic']);
