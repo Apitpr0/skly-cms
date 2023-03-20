@@ -10,8 +10,8 @@ $links = array(
   array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
 
-$ic = $_SESSION['ic'];
-$picture_base64 = $_SESSION['profile_picture']; // Retrieve the picture data from the session variable
+$ic = isset($_SESSION['ic']) ? $_SESSION['ic'] : null;
+$picture_base64 = isset($_SESSION['profile_picture']) ? $_SESSION['profile_picture'] : null;
 
 ?>
 
@@ -28,7 +28,9 @@ $picture_base64 = $_SESSION['profile_picture']; // Retrieve the picture data fro
         <?php foreach($links as $link) { ?>
           <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
         <?php } ?>
-        <img class="w-10 h-10 rounded-full" src="data:image/jpeg;base64,<?php echo $picture_base64; ?>" alt="Profile Picture">
+        <?php if($picture_base64) { ?>
+          <img class="w-10 h-10 rounded-full" src="data:image/jpeg;base64,<?php echo $picture_base64; ?>" alt="Profile Picture">
+        <?php } ?>
       </div>
     </div>
   </div>
