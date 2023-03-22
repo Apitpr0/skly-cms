@@ -1,112 +1,109 @@
 <?php
 include('Components/db/db_connection.php');
-include('Components/header.php');
 include('Components/navbar.php');
-include('Components/auth.php');
+include('Components/footer.php');
+include('Components/header.php');
+
+//check if form has been submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $cl_name=$_POST['name'];
+  $cl_email=$_POST['email'];
+  $cl_message=$_POST['message'];
+
+//Insert data into db
+  $query="INSERT INTO contact (name,email,message) VALUES ('$cl_name','$cl_email','$cl_message')";
+  mysqli_query($connection, $query);
+
+  //Check if data was inserted
+  if (mysqli_affected_rows($connection) > 0) {
+      echo "Message sent!";
+  } else {
+      echo "Message no send";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script>
-    module.exports = {
-    // ...
-    plugins: [
-      // ...
-    require('@tailwindcss/forms'),
-    ],
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Components/css/style.css">
+  <title>SKLY-CMS - Hubungi Kami</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        primary: {"50":"#eff6ff","100":"#dbeafe","200":"#bfdbfe","300":"#93c5fd","400":"#60a5fa","500":"#3b82f6","600":"#2563eb","700":"#1d4ed8","800":"#1e40af","900":"#1e3a8a"}
+      }
+    },
+    fontFamily: {
+      'body': [
+    'Inter', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ],
+      'sans': [
+    'Inter', 
+    'ui-sans-serif', 
+    'system-ui', 
+    '-apple-system', 
+    'system-ui', 
+    'Segoe UI', 
+    'Roboto', 
+    'Helvetica Neue', 
+    'Arial', 
+    'Noto Sans', 
+    'sans-serif', 
+    'Apple Color Emoji', 
+    'Segoe UI Emoji', 
+    'Segoe UI Symbol', 
+    'Noto Color Emoji'
+  ]
+    }
+  }
 }
-    </script>
+  </script>
 </head>
 <body>
-<div class="isolate bg-white py-24 px-6 sm:py-32 lg:px-8">
-  <div class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
-    <svg class="relative left-1/2 -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-40rem)] sm:h-[42.375rem]" viewBox="0 0 1155 678">
-      <path fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)" fill-opacity=".3" d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z" />
-      <defs>
-        <linearGradient id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533" x1="1155.49" x2="-78.208" y1=".177" y2="474.645" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#9089FC" />
-          <stop offset="1" stop-color="#FF80B5" />
-        </linearGradient>
-      </defs>
-    </svg>
-  </div>
-  <div class="mx-auto max-w-2xl text-center">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Contact sales</h2>
-    <p class="mt-2 text-lg leading-8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
-  </div>
-  <form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
-    <div class="grid grid-cols-1 gap-y-6 gap-x-8 sm:grid-cols-2">
-      <div>
-        <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">First name</label>
-        <div class="mt-2.5">
-          <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-      </div>
-      <div>
-        <label for="last-name" class="block text-sm font-semibold leading-6 text-gray-900">Last name</label>
-        <div class="mt-2.5">
-          <input type="text" name="last-name" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-      </div>
-      <div class="sm:col-span-2">
-        <label for="company" class="block text-sm font-semibold leading-6 text-gray-900">Company</label>
-        <div class="mt-2.5">
-          <input type="text" name="company" id="company" autocomplete="organization" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-      </div>
-      <div class="sm:col-span-2">
-        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">Email</label>
-        <div class="mt-2.5">
-          <input type="email" name="email" id="email" autocomplete="email" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-      </div>
-      <div class="sm:col-span-2">
-        <label for="phone-number" class="block text-sm font-semibold leading-6 text-gray-900">Phone number</label>
-        <div class="relative mt-2.5">
-          <div class="absolute inset-y-0 left-0 flex items-center">
-            <label for="country" class="sr-only">Country</label>
-            <select id="country" name="country" class="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm">
-              <option>US</option>
-              <option>CA</option>
-              <option>EU</option>
-            </select>
-            <svg class="pointer-events-none absolute top-0 right-3 h-full w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
+<form method="POST">
+<section class="bg-white dark:bg-gray-900">
+  <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Hubungi Kami</h2>
+      <p class="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">Anda mempunyai masalah?, Hubungi kami untuk mendapatkan bantuan.</p>
+          <div>
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Nama</label>
+              <input type="text" id="name" name="name" class="block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Masukkan Nama" required>
           </div>
-          <input type="tel" name="phone-number" id="phone-number" autocomplete="tel" class="block w-full rounded-md border-0 py-2 px-3.5 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-        </div>
-      </div>
-      <div class="sm:col-span-2">
-        <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">Message</label>
-        <div class="mt-2.5">
-          <textarea name="message" id="message" rows="4" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
-        </div>
-      </div>
-      <div class="flex gap-x-4 sm:col-span-2">
-        <div class="flex h-6 items-center">
-          <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-          <button type="button" class="bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" role="switch" aria-checked="false" aria-labelledby="switch-1-label">
-            <span class="sr-only">Agree to policies</span>
-            <!-- Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" -->
-            <span aria-hidden="true" class="translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"></span>
-          </button>
-        </div>
-        <label class="text-sm leading-6 text-gray-600" id="switch-1-label">
-          By selecting this, you agree to our
-          <a href="#" class="font-semibold text-indigo-600">privacy&nbsp;policy</a>.
-        </label>
-      </div>
-    </div>
-    <div class="mt-10">
-      <button type="submit" class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Let's talk</button>
-    </div>
-  </form>
-</div>
+          <div>
+              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Emel anda</label>
+              <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="nou@gmail.com" required>
+          </div>
 
+          <div class="sm:col-span-2">
+              <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">Mesej anda</label>
+              <textarea id="message" name="message" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Tinggalkan mesej anda"></textarea>
+          </div>
+          <a href=""></a>
+          <button type="submit" class="py-3 px-5 text-sm font-medium text-center text-white rounded-lg bg-primary-700 sm:w-fit hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Hantar Mesej</button>
+      </form>
+  </div>
+</section>
 </body>
 </html>
