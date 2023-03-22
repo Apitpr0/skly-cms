@@ -3,7 +3,7 @@ include('Components/db/db_connection.php');
 session_start();
 
 $links = array(
-  array("name" => "Home", "url" => "index.php"),
+  array("name" => "Laman Utama", "url" => "index.php"),
   array("name" => "Tempah", "url" => "booking.php"),
   array("name" => "Pengakuan", "url" => "anonconn.php"),
   array("name" => "Blog", "url" => "blog.php"),

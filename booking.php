@@ -34,41 +34,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 <body class="bg-gray-100">
 
 	<div class="container mx-auto my-4 p-4 bg-white rounded-lg shadow-lg">
-		<h2 class="text-xl font-bold mb-4">Book a Counseling Session</h2>
+		<h2 class="text-xl font-bold mb-4">Tempah sesi kaunseling anda</h2>
 
 		<form method="POST">
 			<div class="mb-4">
-				<label for="counselor-name" class="block text-gray-700 font-bold mb-2">Counselor Name:</label>
+				<label for="counselor-name" class="block text-gray-700 font-bold mb-2">Nama Kaunselor:</label>
 				<input type="text" id="counselor-name" name="counselor-name" class="w-full p-2 border rounded-md" required>
 			</div>
 
 			<div class="mb-4">
-				<label for="session-time" class="block text-gray-700 font-bold mb-2">Session Time:</label>
+				<label for="session-time" class="block text-gray-700 font-bold mb-2">Waktu Sesi:</label>
 				<input type="datetime-local" id="session-time" name="session-time" class="w-full p-2 border rounded-md" required>
 			</div>
 
 			<div class="mb-4">
-				<label for="counseling-type" class="block text-gray-700 font-bold mb-2">Type of Counseling:</label>
+				<label for="counseling-type" class="block text-gray-700 font-bold mb-2">Jenis Kaunseling:</label>
 				<select id="counseling-type" name="counseling-type" class="w-full p-2 border rounded-md" required>
-					<option value="">--Select Counseling Type--</option>
-					<option value="Individual Counseling">Individual Counseling</option>
-					<option value="Couples Counseling">Couples Counseling</option>
-					<option value="Family Counseling">Family Counseling</option>
+					<option value="">--Pilih Jenis Kaunseling--</option>
+					<option value="Individual Counseling">Kaunseling Individu</option>
+					<option value="Couples Counseling">Kaunseling Kelompok</option>
 				</select>
 			</div>
 
 			<div class="mb-4">
-				<label for="client-name" class="block text-gray-700 font-bold mb-2">IC Number:</label>
+				<label for="client-name" class="block text-gray-700 font-bold mb-2">Nombor IC:</label>
 				<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" required>
 			</div>
 
 			<div class="mb-4">
-				<label for="client-phone" class="block text-gray-700 font-bold mb-2">Phone Number:</label>
+				<label for="client-phone" class="block text-gray-700 font-bold mb-2">Nombor Telefon:</label>
 				<input type="tel" id="client-phone" name="client-phone" class="w-full p-2 border rounded-md" required>
 			</div>
 
 			<button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-			  Book Appointment
+			  Tempah
 			</button>
 		</form>
 
