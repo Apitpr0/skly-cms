@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
   </script>
 </head>
 <body>
-<form method="POST">
+<form onsubmit="sendEmail(); reset(); return false;" method="POST">
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Hubungi Kami</h2>
@@ -105,5 +105,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
       </form>
   </div>
 </section>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
+<script>
+  function sendEmail(){
+        Email.send({
+        Host : "smtp.elasticemail.com",
+        Username : "bobramen13@protonmail.com",
+        Password : "72742AE081A1C08EB246B4F7C7D4F834886A",
+        To : 'apitpro123@gmail.com',
+        From : document.getElementById("email").value,
+        Subject : "New Contact Form Enquiry",
+        Body : "Name: "+document.getElementById("name").value 
+        + "<br> Email: "document.getElementById("email").value
+        + "<br> Message: "document.getElementById("message").value
+    }).then(
+      message => alert(message)
+    );
+  }
+</script>
 </body>
 </html>
