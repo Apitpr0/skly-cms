@@ -48,22 +48,39 @@ include('Components/navbar.php');
       <h2 class="text-3xl font-bold mb-4">Blog Kaunseling</h2>
       <p class="text-gray-700">Informasi dari Unit Kaunseling</p>
     </div>
-    <div>
-      <?php while ($row = mysqli_fetch_assoc($result)) { ?>
-        <article class="my-4">
-          <div class="border-b-2 border-gray-300 mb-4 pb-4">
-            <h3 class="text-2xl font-bold mb-2">
-              <a href="#" class="text-blue-500 hover:text-blue-700">
-                <?php echo $row['post_title']; ?>
-              </a>
-            </h3>
-            <p class="text-gray-700"><?php echo $row['post_content']; ?></p>
+    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <?php 
+      while ($row = mysqli_fetch_assoc($result)) {
+      ?>
+      <article class="flex max-w-xl flex-col items-start justify-between">
+        <div class="flex items-center gap-x-4 text-xs">
+        </div>
+        <div class="group relative">
+          <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+            <a href="#">
+              <span class="absolute inset-0"></span>
+              <?php echo $row['post_title']; ?>
+            </a>
+          </h3>
+          <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3"><?php echo $row['post_content']; ?></p>
+          <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3"></p>
+        </div>
+        <div class="relative mt-8 flex items-center gap-x-4">
+          <div class="text-sm leading-6">
+            <p class="font-semibold text-gray-900">
+            </p>
+
+            <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3"><?php echo $row['date_published']; ?></p>
           </div>
-          <div>
-            <p class="text-gray-600"><?php echo $row['date_published']; ?></p>
-          </div>
-        </article>
-      <?php } ?>
+        </div>
+      </article>
+      <?php 
+      } // end while loop
+      // Check if the query returned any results
+      if (mysqli_num_rows($result) == 0) {
+        echo "No blog posts found.";
+      }
+      ?>
     </div>
   </div>
 </div>
