@@ -27,10 +27,12 @@ $picture_base64 = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pictu
       <div class="flex items-center bg-white p-1 rounded">
         <?php foreach($links as $link) { ?>
           <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
-        <?php } ?>
-        <?php if($picture_base64) { ?>
-          <img class="w-10 h-10 rounded-full" src="data:image/jpeg;base64,<?php echo $picture_base64; ?>" alt="Profile Picture">
-        <?php } ?>
+        <?php } 
+          $profile_picture = $picture_base64 ? "data:image/jpeg;base64,$picture_base64" : "Components/assets/img/emptyprofilepicture.jpg";
+        ?>
+        <a href="profile.php">
+          <img class="w-10 h-10 rounded-full" src="<?php echo $profile_picture; ?>" alt="Profile Picture">
+        </a>
       </div>
     </div>
   </div>
