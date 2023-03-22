@@ -15,7 +15,7 @@ $user = "users"
     </div>
     <div class="w-1/2">
         <div class="border-8 border-pink-500  rounded-xl bg-white p-8">
-            <p>Muhammad Afiq Muhaimin bin Mohd Zain</p>
+            <p>Muhammad Afiq Muhaimin bin Mohd Zaini</p>
             <p>020926-07-0255</p>
             <p>KELAS : MURTIARA 5</p>
             <p>PASSWORD : ********NIG</p>
