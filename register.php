@@ -1,7 +1,6 @@
 <?php
 require('components/db/db_connection.php');
 include('Components/header.php');
-$msg="";
 if (isset($_POST['submit'])) {
     $ic = mysqli_real_escape_string($connection, $_POST['ic']);
     $password = $_POST['password'];
@@ -30,7 +29,11 @@ if (isset($_POST['submit'])) {
 <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Register</h2>
-        <?php if ($msg != "") echo "<p class='mt-2 text-center text-sm text-red-600'>$msg</p>"; ?>
+        <?php 
+        if(isset($msg)) {
+            echo '<div class="mt-2 text-center text-sm text-red-600">'.$msg.'</div>';
+        }
+        ?>
         <form class="mt-8 space-y-6" method="post">
             <div class="rounded-md shadow-sm -space-y-px">
                 <div>
