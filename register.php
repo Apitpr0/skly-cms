@@ -1,7 +1,7 @@
 <?php
 require('components/db/db_connection.php');
 include('Components/header.php');
-
+$msg="";
 if (isset($_POST['submit'])) {
     $ic = mysqli_real_escape_string($connection, $_POST['ic']);
     $password = $_POST['password'];
