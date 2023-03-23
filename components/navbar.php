@@ -9,10 +9,6 @@ $links = array(
   array("name" => "Blog", "url" => "blog.php"),
   array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
-
-$ic = isset($_SESSION['ic']) ? $_SESSION['ic'] : null;
-$picture_base64 = isset($_SESSION['profile_picture']) ? $_SESSION['profile_picture'] : null;
-
 ?>
 
 <nav class="">
@@ -28,10 +24,13 @@ $picture_base64 = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pictu
         <?php foreach($links as $link) { ?>
           <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
         <?php } 
-          $profile_picture = $picture_base64 ? "data:image/jpeg;base64,$picture_base64" : "Components/assets/img/emptyprofilepicture.jpg";
+          $ic = $_SESSION["ic"];
+          $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
+          $row = mysqli_fetch_assoc($result);
+          $picture_base64 = !empty($row['profile_picture']) ? $row['profile_picture'] : "Components/assets/img/emptyprofilepicture.jpg";
         ?>
         <a href="profile.php">
-          <img class="w-10 h-10 rounded-full" src="<?php echo $profile_picture; ?>" alt="Profile Picture">
+          <img class="w-10 h-10 rounded-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($picture_base64); ?>" alt="Profile Picture">
         </a>
       </div>
     </div>
