@@ -22,9 +22,6 @@ include('Components/auth.php');
 		</div>
 	</div>
 </section>
-<form method="post">
-    <input type="submit" name="logout" value="Logout">
-</form>
 <?php
 include('Components/footer.php');
 ?>
