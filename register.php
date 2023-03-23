@@ -5,7 +5,7 @@ if (isset($_POST['submit'])) {
     $ic = mysqli_real_escape_string($connection, $_POST['ic']);
     $password = $_POST['password'];
     $cPass = $_POST['cpass'];
-    $nama = $_POST['name']
+    $nama = $_POST['name'];
 
     if (empty($ic)) {
         $msg = "IC field cannot be empty";
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         $msg = "Password must be at least 8 characters long and contain at least one letter and one number";
     } else {
         $hashed_password = hash('sha512', $password);
-        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', $nama, '$hashed_password')")) {
+        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', '$nama', '$hashed_password')")) {
             $msg = "An error occurred while registering. Please try again.";
         } else {
             header("Location: login.php");
