@@ -21,7 +21,7 @@ $picture_base64 = isset($_SESSION['profile_picture']) ? $_SESSION['profile_pictu
       <!-- Logo and company name -->
       <div class="flex-shrink-0 flex items-center">
         <img class="h-8 w-8" src="Components/assets/img/school_logo.png" alt="Logo">
-        <span class="text-black font-bold ml-2">SKLY Counselling Management System</span>
+        <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
       </div>
       <!-- Link and profile picture -->
       <div class="flex items-center bg-white p-1 rounded">
