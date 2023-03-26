@@ -6,6 +6,7 @@ if (isset($_POST['submit'])) {
     $password = $_POST['password'];
     $cPass = $_POST['cpass'];
     $nama = $_POST['name'];
+    $is_admin = isset($_POST['is_admin']) ? 1 : 0; // check if the checkbox is checked
 
     if (empty($ic)) {
         $msg = "IC field cannot be empty";
@@ -17,7 +18,7 @@ if (isset($_POST['submit'])) {
         $msg = "Password must be at least 8 characters long and contain at least one letter and one number";
     } else {
         $hashed_password = hash('sha512', $password);
-        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', '$nama', '$hashed_password')")) {
+        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password,is_admin) VALUES ('$ic', '$nama', '$hashed_password', '$is_admin')")) {
             $msg = "An error occurred while registering. Please try again.";
         } else {
             header("Location: login.php");
@@ -54,6 +55,13 @@ if (isset($_POST['submit'])) {
                     <input id="cpass" name="cpass" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Sahkan Kata Laluan">
                 </div>
             </div>
+                <div>
+        <label for="is_admin" class="flex items-center">
+            <input id="is_admin" name="is_admin" type="checkbox" class="form-checkbox" value="1">
+            <span class="ml-2 text-sm text-gray-600">Daftar Sebagai Pentadbir?</span>
+        </label>
+            </div>
+
 
             <div>
                 <button type="submit" name="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

@@ -77,11 +77,11 @@ while ($res = mysqli_fetch_array($result)) {
                 </div>
                 <div class="mt-4">
                 <label class="block">Name</label>
-                <input name="NAMES" type="text" required class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"  value="<?php echo $NAME; ?>">  
+                <input name="NAMES" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"  value="<?php echo $NAME; ?>">  
                 </div>
                 <div class="mt-4">
                 <label class="block">Password</label>
-                <input name="PASS" type="text" required class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">  
+                <input name="PASS" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">  
                 </div>
                 <div class="flex items-baseline justify-between">
                     <button type="submit" name="update" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Update</button>
