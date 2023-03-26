@@ -32,7 +32,7 @@ if (isset($_POST["update"])) {
               <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600">
                 <div class="flex items-center space-x-2">
                   <span class="text-3xl"><i class="bx bx-check"></i></span>
-                  <p class="font-bold">Success!</p>
+                  <p class="font-bold">Berjaya!</p>
                 </div>
               </button>
             </main>
@@ -41,7 +41,7 @@ if (isset($_POST["update"])) {
       <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">
         <div class="flex items-center space-x-2">
           <span class="text-3xl"><i class="bx bx-x"></i></span>
-          <p class="font-bold">Fail!</p>
+          <p class="font-bold">Tidak Berjaya, Sila cuba lagi</p>
         </div>
       </button>
     </main>
@@ -64,11 +64,11 @@ while ($res = mysqli_fetch_array($result)) {
 ?>
 <div class="flex items-center justify-center">
     <div class="px-8 py-6 mt-20 text-left bg-white shadow-lg rounded-lg">
-        <h3 class="text-2xl font-bold">UPDATE MAKLUMAT <?php echo $NAME; ?></h3>
+        <h3 class="text-2xl font-bold">Kemaskini Maklumat <?php echo $NAME; ?></h3>
         <form method="post" enctype='multipart/form-data'>
             <div class="mt-4">
             <div class="mt-4">
-            <label class="block" for="file_input">Select image [LEAVE EMPTY IF NO CHANGE]</label>
+            <label class="block" for="file_input">Masukkan Gambar anda [Tinggalkan kosong jika tiada perubahan]</label>
             <input type="file" name="image">
             </div>
             <div class="mt-4">
@@ -76,15 +76,15 @@ while ($res = mysqli_fetch_array($result)) {
                 <input name="IC" type="text" readonly="readonl" class="w-full px-4 py-2 mt-2 border bg-gray-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" maxlength="5" value="<?php echo $ic; ?>">  
                 </div>
                 <div class="mt-4">
-                <label class="block">Name</label>
+                <label class="block">Nama</label>
                 <input name="NAMES" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"  value="<?php echo $NAME; ?>">  
                 </div>
                 <div class="mt-4">
-                <label class="block">Password</label>
+                <label class="block">Kata Laluan</label>
                 <input name="PASS" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">  
                 </div>
                 <div class="flex items-baseline justify-between">
-                    <button type="submit" name="update" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Update</button>
+                    <button type="submit" name="update" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Kemaskini</button>
                     <button type="reset"><a class="text-sm text-blue-600 hover:underline">Clear</a></button>
                 </div>
             </div>
