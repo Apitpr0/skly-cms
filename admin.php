@@ -51,7 +51,13 @@ $ic = $_SESSION['ic']
             while ($info = mysqli_fetch_array($data)) { ?>
                   <tr class="bg-gray-400 border-b">
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
-              <img class="object-cover w-full h-28 rounded-lg" src="<?php echo $picture_base64; ?>" />
+              <?php
+                $icUser = $info["ic"];
+                $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$icUser'");
+                $row = mysqli_fetch_assoc($result);
+                $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
+              ?>
+               <img class="object-cover w-full h-28 rounded-lg" src="<?php echo $picture_base64; ?>" />
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
                 <?php echo $info["topics"]; ?>
