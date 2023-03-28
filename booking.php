@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 			<div class="mb-4">
 				<label for="client-name" class="block text-gray-700 font-bold mb-2">Nombor IC:</label>
-				<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" required>
+				<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" value="<?php echo $_SESSION['ic']; ?>">
 			</div>
 
 			<div class="mb-4">
