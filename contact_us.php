@@ -3,6 +3,14 @@ include('Components/db/db_connection.php');
 include('Components/navbar.php');
 include('Components/footer.php');
 include('Components/header.php');
+//include files for phpmailer
+require 'Components/phpmailer/Exception.php';
+require 'Components/phpmailer/PHPMailer.php';
+require 'Components/phpmailer/SMTP.php';
+//define name space
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 //check if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -107,3 +115,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 </section>
 </body>
 </html>
+
+<?php
+//Create a new PHPMailer instance
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host="smtp.gmail.com";
+$mail->SMTPAuth="true";
+$mail->SMTPSecure="tls";
+$mail->Port="587";
+$mail->Username="apitpro123@gmail.com";
+$mail->Password="vnlgedgqwmrftxjr";
+$mail->Subject="Mesej dari Pengguna";
+$mail->setFrom("apitpro123@gmail.com");
+$mail->addAddress($_POST['email']);
+$mail->isHTML(true);
+$mail->Body=($_POST['message']);
+$mail->send();
+?>
