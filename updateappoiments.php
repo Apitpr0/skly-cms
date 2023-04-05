@@ -53,7 +53,7 @@ if (isset($_POST["update"])) {
 </div>
 <?php
 $ID = $_GET["update_id"];
-$result = mysqli_query($con, "SELECT * FROM places WHERE ID='$ID'");
+$result = mysqli_query($connection, "SELECT * FROM places WHERE ID='$ID'");
 while ($res = mysqli_fetch_array($result)) {
     $IMG = $res["IMG"];
     $NAMES = $res["NAMES"];
