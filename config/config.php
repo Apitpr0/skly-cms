@@ -1,3 +1,3 @@
 <?php
-$pass=qccqlfmrduldymwq;
+$gm_pass="qccqlfmrduldymwq";
 ?>

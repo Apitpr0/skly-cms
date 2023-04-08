@@ -126,7 +126,7 @@ $mail->SMTPAuth="true";
 $mail->SMTPSecure="tls";
 $mail->Port="587";
 $mail->Username="apitpro123@gmail.com";
-$mail->Password=$pass;
+$mail->Password=$gm_pass;
 $mail->Subject="SKLY-CMS : Mesej dari Pengguna";
 $mail->setFrom("apitpro123@gmail.com");
 $mail->addAddress($_POST['email']);
