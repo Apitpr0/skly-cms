@@ -118,6 +118,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
 <?php
 //Create a new PHPMailer instance
+require_once "config/config.php";
 $mail = new PHPMailer(true);
 $mail->isSMTP();
 $mail->Host="smtp.gmail.com";
@@ -125,8 +126,8 @@ $mail->SMTPAuth="true";
 $mail->SMTPSecure="tls";
 $mail->Port="587";
 $mail->Username="apitpro123@gmail.com";
-$mail->Password="vnlgedgqwmrftxjr";
-$mail->Subject="Mesej dari Pengguna";
+$mail->Password=$pass;
+$mail->Subject="SKLY-CMS : Mesej dari Pengguna";
 $mail->setFrom("apitpro123@gmail.com");
 $mail->addAddress($_POST['email']);
 $mail->isHTML(true);

@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['profile_picture'] = base64_encode($picture_data); // Store the picture data as a session variable
         
             if ($is_admin == 1) {
-                header('Location: admin.php');
+                header('Location: dashboard_admin.php');
             } else {
                 header('Location: index.php');
             }
