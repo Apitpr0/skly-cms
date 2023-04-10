@@ -4,6 +4,7 @@ include('Components/header.php');
 include('Components/navbar.php');
 include('Components/auth.php');
 $ic = $_SESSION['ic'];
+
 ?>
 <h1 class="pl-10 font-medium leading-tight text-5xl pt-1 text-black">ADMIN DASHBOARD</h1>
 <div class="p-8 m-8 bg-gray-400 rounded-lg">
@@ -11,13 +12,13 @@ $ic = $_SESSION['ic'];
     $data = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
     $info = mysqli_fetch_array($data);
     ?>
-    <b class="text-lg text-white">WELCOME ADMIN <?php echo strtoupper(
+    <b class="text-lg text-white">Selamat Datang ADMIN <?php echo strtoupper(
         $info["name"]
     ); ?></b><br>
     <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="components/logout.php">Logout</a></button>
     <!---<button type="button" class="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><a href=""></a></button>!--->
   </div>
-  <center><u class="text-black">APPOINTMENTS LIST</u></center>
+  <center><u class="text-black">Senarai Temujanji</u></center>
   <div class="px-8 pb-6 mt-4 flex flex-col ">
   <div class=" sm:-mx-6 lg:-mx-8">
     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
@@ -26,22 +27,22 @@ $ic = $_SESSION['ic'];
           <thead class="border-b bg-gray-500">
             <tr>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                USER
+                Pengguna
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-              TOPIC
+              Topik
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                DATE
+                Tarikh
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-               STATUS
+               Status
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-               ASSIGN
+               Ditugaskan Kepada
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                ACTION
+                Tindakan
               </th>
             </tr>
           </thead class="border-b">
@@ -52,8 +53,9 @@ $ic = $_SESSION['ic'];
                   <tr class="bg-gray-400 border-b">
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
               <?php
-                $icUser = $info["ic"];
-                $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$icUser'");
+                //$icUser = $info["ic"];
+                //echo $ic;
+                $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
                 $row = mysqli_fetch_assoc($result);
                 $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
               ?>
@@ -76,14 +78,17 @@ $ic = $_SESSION['ic'];
   <div>
     <button type="button" class="inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><a href="updateappoiments.php?update_id=<?php echo $info[
         "appt_id"
-    ]; ?>">Update</a></button>
-    <button type="button" data-modal-toggle="staticModal" class="inline-block px-6 py-2.5 bg-red-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="padamappoiments.php?delete_id=<?php echo $info["appt_id"]; ?>">Delete</a></button>
+    ]; ?>">Kemaskini</a></button>
+    <button type="button" data-modal-toggle="staticModal" class="inline-block px-6 py-2.5 bg-red-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+      <a href="padamappointments.php?appt_id=<?php echo $info["appt_id"]; ?>">Padam</a>
+    </button>
+  </div>
     <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
     <div class="relative w-full max-w-2xl h-full md:h-auto">
         <!-- Modal content -->
         <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <!-- Modal header -->
-            <div class="flex justify-between items-start p-4 rounded-t bg-red-700 border-b dark:border-gray-600">
+            <div href="padamappointments.php" class="flex justify-between items-start p-4 rounded-t bg-red-700 border-b dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-white">
                     DELETE!
                 </h3>
