@@ -39,7 +39,7 @@ if (isset($_POST["update"])) {
 
     <?php } else { ?>
     <main x-data="app">
-      <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">
+      <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <div class="flex items-center space-x-2">
           <span class="text-3xl"><i class="bx bx-x"></i></span>
           <p class="font-bold">Tidak Berjaya, Sila cuba lagi</p>
