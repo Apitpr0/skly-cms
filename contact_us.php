@@ -1,8 +1,19 @@
 <?php
+error_reporting(0);
+?>
+<?php
 include('Components/db/db_connection.php');
 include('Components/navbar.php');
 include('Components/footer.php');
 include('Components/header.php');
+//include files for phpmailer
+require 'Components/phpmailer/Exception.php';
+require 'Components/phpmailer/PHPMailer.php';
+require 'Components/phpmailer/SMTP.php';
+//define name space
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 //check if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
@@ -93,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
           </div>
           <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Emel anda</label>
-              <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="nou@gmail.com" required>
+              <input type="email" id="email" name="email" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" placeholder="Emel anda " required>
           </div>
 
           <div class="sm:col-span-2">
@@ -107,3 +118,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 </section>
 </body>
 </html>
+
+<?php
+//Create a new PHPMailer instance
+require_once "config/config.php";
+$mail = new PHPMailer(true);
+$mail->isSMTP();
+$mail->Host="smtp.gmail.com";
+$mail->SMTPAuth="true";
+$mail->SMTPSecure="tls";
+$mail->Port="587";
+$mail->Username="apitpro123@gmail.com";
+$mail->Password=$gm_pass;
+$mail->Subject="SKLY-CMS : Mesej dari Pengguna";
+$mail->setFrom("apitpro123@gmail.com");
+$mail->addAddress($_POST['email']);
+$mail->isHTML(true);
+$mail->Body=($_POST['message']);
+$mail->send();
+?>
+

@@ -4,41 +4,42 @@ include('Components/header.php');
 include('Components/navbar.php');
 include('Components/auth.php');
 if (isset($_POST["update"])) {
-    $fileName = basename($_FILES["image"]["name"]);
-    $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-    $allowTypes = ["jpg", "png", "jpeg", "gif"];
-    $IC = $_POST["IC"];
-    $PASS = $_POST["PASS"];
-    $NAMES = $_POST["NAMES"];
-    $hashed_password = hash('sha512', $PASS);
-    if (in_array($fileType, $allowTypes)) {
-        $image = $_FILES["image"]["tmp_name"];
-        $imgContent = addslashes(file_get_contents($image));
-        $result = mysqli_query(
-            $connection,
-            "UPDATE users SET
-   profile_picture='$imgContent',name='$NAMES',password='$hashed_password'
-   WHERE ic='$IC'"
-        );
-    } else {
-        $result = mysqli_query(
-            $connection,
-            "UPDATE users SET
-   name='$NAMES',password='$hashed_password' WHERE ic='$IC'"
-        );
-    }
+  $fileName = basename($_FILES["image"]["name"]);
+  $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+  $allowTypes = ["jpg", "png", "jpeg", "gif"];
+  $IC = $_POST["IC"];
+  $PASS = $_POST["PASS"];
+  $NAMES = $_POST["NAMES"];
+  $hashed_password = hash('sha512', $PASS);
+  if (in_array($fileType, $allowTypes)) {
+      $image = $_FILES["image"]["tmp_name"];
+      $imgContent = addslashes(file_get_contents($image));
+      $result = mysqli_query(
+          $connection,
+          "UPDATE users SET
+          profile_picture='$imgContent',name='$NAMES',password='$hashed_password'
+          WHERE ic='$IC'"
+      );
+  } else {
+      $errorMessage = "Invalid file type. Allowed file types are " . implode(", ", $allowTypes);
+      die($errorMessage);
+  }
+
+
     if ($result) { ?>
-            <main x-data="app">
-              <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600">
-                <div class="flex items-center space-x-2">
-                  <span class="text-3xl"><i class="bx bx-check"></i></span>
-                  <p class="font-bold">Berjaya!</p>
-                </div>
-              </button>
-            </main>
-                <?php } else { ?>
+      <main x-data="{ open: false }">
+  <button type="button" @click="open = true; setTimeout(() => open = false, 50)" x-show="!open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+    <div class="flex items-center space-x-2">
+      <span class="text-3xl"><i class="bx bx-check"></i></span>
+      <p class="font-bold">Berjaya!</p>
+    </div>
+  </button>
+</main>
+
+
+    <?php } else { ?>
     <main x-data="app">
-      <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-red-500 px-4 py-2 text-white transition hover:bg-red-600">
+      <button type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms class="fixed top-4 right-4 z-50 rounded-md bg-green-500 px-4 py-2 text-white transition hover:bg-green-600" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <div class="flex items-center space-x-2">
           <span class="text-3xl"><i class="bx bx-x"></i></span>
           <p class="font-bold">Tidak Berjaya, Sila cuba lagi</p>
@@ -46,13 +47,13 @@ if (isset($_POST["update"])) {
       </button>
     </main>
         <?php }
-}
+
+    }
 ?>
 <div class="p-8 m-8 bg-white rounded-lg">
     <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="dashboard_admin.php">BACK</a></button>
-    <form method="post">
-      <input class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" type="submit" name="logout" value="Logout">
-    </form>
+    <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="components/logout.php">Logout</a></button>
+
 </div>
 <?php
 $ic = $_SESSION["ic"];

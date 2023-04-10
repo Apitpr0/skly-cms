@@ -16,7 +16,7 @@ $links = array(
     <div class="flex items-center justify-between h-16">
       <!-- Logo and company name -->
       <div class="flex-shrink-0 flex items-center">
-        <img class="h-8 w-8" src="Components/assets/img/school_logo.png" alt="Logo">
+        <img class="h-8 w-8" src="components/assets/img/school_logo.png" alt="Logo">
         <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
       </div>
       <!-- Link and profile picture -->
@@ -27,10 +27,10 @@ $links = array(
           $ic = $_SESSION["ic"];
           $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
           $row = mysqli_fetch_assoc($result);
-          $picture_base64 = !empty($row['profile_picture']) ? $row['profile_picture'] : "Components/assets/img/emptyprofilepicture.jpg";
+          $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
         ?>
         <a href="profile.php">
-          <img class="w-10 h-10 rounded-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($picture_base64); ?>" alt="Profile Picture">
+          <img class="w-10 h-10 rounded-full" src="<?php echo $picture_base64; ?>" alt="Profile Picture">
         </a>
       </div>
     </div>

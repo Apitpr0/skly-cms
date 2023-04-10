@@ -11,9 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $status=$_POST['counseling-type'];
     $icnum=$_POST['client-ic'];
     $phone=$_POST['client-phone'];
+	$topics=$_POST['client-topic'];
 
 //Insert data into db
-    $query="INSERT INTO appointment (name,appointment_date,status,ic,phone_number) VALUES ('$counselor_name','$session_time','$status','$icnum','$phone')";
+    $query="INSERT INTO appointment (name,appointment_date,status,topics,phone_number) VALUES ('$counselor_name','$session_time','$status','$topics','$phone')";
     mysqli_query($connection, $query);
 
     //Check if data was inserted
@@ -57,8 +58,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 			</div>
 
 			<div class="mb-4">
+				<label for="client-topic" class="block text-gray-700 font-bold mb-2">Topik yang ingin Dibincangkan:</label>
+				<input type="topic" id="client-topic" name="client-topic" class="w-full p-2 border rounded-md" required>
+			</div>
+
+			<div class="mb-4">
 				<label for="client-name" class="block text-gray-700 font-bold mb-2">Nombor IC:</label>
-				<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" required>
+				<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" value="<?php echo $_SESSION['ic']; ?>">
 			</div>
 
 			<div class="mb-4">
