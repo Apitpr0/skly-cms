@@ -65,7 +65,15 @@ $ic = $_SESSION['ic'];
                 <?php echo $info["topics"]; ?>
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
-              <?php echo $info["appointment_date"]; ?>
+              <?php $date_Appointment = $info["appointment_date"]; 
+              $startDate = strtotime(date('Y-m-d', strtotime($date_Appointment) ) );
+              $currentDate = strtotime(date('Y-m-d'));
+              if ($startDate < $currentDate) {
+                echo '<span class="text-red-500 font-bold text-2xl">Tarikh sudah melepasi masa yang ditetapkan, sila ubah tarikh temujanji</span>';
+            } else {
+                echo $date_Appointment;
+            }
+              ?>
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
                 <?php echo $info["status"]; ?>
