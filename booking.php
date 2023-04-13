@@ -19,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     //Check if data was inserted
     if (mysqli_affected_rows($connection) > 0) {
-        echo "Booking approved";
+        echo "Tempahan Disahkan";
     } else {
-        echo "Booking denied, please try again";
+        echo "Tempahan Tidak Disahkan, sila cuba lagi";
     }
 }
 ?>

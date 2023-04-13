@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Fetch blog posts from database
-$query = "SELECT * FROM blog_posts ORDER BY date_published";
-$result = mysqli_query($connection, $query);
+$query2 = "SELECT * FROM blog_posts ORDER BY date_published";
+$result2 = mysqli_query($connection, $query2);
 // Include header and navbar
 include('Components/header.php');
 include('Components/navbar.php');
@@ -27,12 +27,12 @@ include('Components/navbar.php');
 <!-- Blog submission form -->
 <form method="post" class="my-8 mx-auto max-w-lg">
   <div class="mb-4">
-    <label for="post_title" class="block text-gray-700 font-bold mb-2">Post Title</label>
+    <label for="post_title" class="block text-gray-700 font-bold mb-2">Tajuk</label>
     <input type="text" id="post_title" name="post_title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
   </div>
 
   <div class="mb-6">
-    <label for="post_content" class="block text-gray-700 font-bold mb-2">Post Content</label>
+    <label for="post_content" class="block text-gray-700 font-bold mb-2">Mesej</label>
     <textarea id="post_content" name="post_content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
   </div>
   
@@ -44,46 +44,31 @@ include('Components/navbar.php');
 <!-- Blog posts section -->
 <div class="my-8 mx-auto max-w-4xl">
   <div>
-    <div>
-      <h2 class="text-3xl font-bold mb-4">Blog Kaunseling</h2>
-      <p class="text-gray-700">Informasi dari Unit Kaunseling</p>
+    <h2 class="text-3xl font-bold mb-4">Blog Kaunseling</h2>
+    <p class="text-gray-700">Informasi dari Unit Kaunseling</p>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+    <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <a href="#" class="block">
+        <img class="h-48 w-full object-cover object-center" src="https://source.unsplash.com/featured/?nature" alt="<?php echo $row2['post_title']; ?>">
+      </a>
+      <div class="p-6">
+        <a href="#" class="block text-blue-500 font-semibold mb-2"><?php echo $row2['post_title']; ?></a>
+        <p class="text-gray-700 mb-4"><?php echo substr($row2['post_content'], 0, 150); ?>...</p>
+        <div class="flex justify-between items-center">
+          <span class="text-gray-600 text-sm"><?php echo date('d M Y', strtotime($row2['date_published'])); ?></span>
+          <a href="#" class="text-blue-500 text-sm font-semibold hover:text-blue-600">Read more</a>
+        </div>
+      </div>
     </div>
-    <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-      <?php 
-      while ($row = mysqli_fetch_assoc($result)) {
-      ?>
-      <article class="flex max-w-xl flex-col items-start justify-between">
-        <div class="flex items-center gap-x-4 text-xs">
-        </div>
-        <div class="group relative">
-          <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-            <a href="#">
-              <span class="absolute inset-0"></span>
-              <?php echo $row['post_title']; ?>
-            </a>
-          </h3>
-          <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3"><?php echo $row['post_content']; ?></p>
-          <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3"></p>
-        </div>
-        <div class="relative mt-8 flex items-center gap-x-4">
-          <div class="text-sm leading-6">
-            <p class="font-semibold text-gray-900">
-            </p>
-
-            <p class="mt-5 text-sm font-semibold leading-6 text-gray-700 line-clamp-3"><?php echo $row['date_published']; ?></p>
-          </div>
-        </div>
-      </article>
-      <?php 
-      } // end while loop
-      // Check if the query returned any results
-      if (mysqli_num_rows($result) == 0) {
-        echo "No blog posts found.";
-      }
-      ?>
-    </div>
+    <?php } // end while loop ?>
+    <?php if (mysqli_num_rows($result2) == 0) {
+      echo "<p class='text-center text-gray-600'>No blog posts found.</p>";
+    } ?>
   </div>
 </div>
+
 
 <?php
   // Close the database connection

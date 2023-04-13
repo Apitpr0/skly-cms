@@ -52,19 +52,20 @@ if(isset($_POST['submit'])){
   
   if (mysqli_num_rows($result) > 0) {
     // Output each record as a list item
-    echo "<ul class='list-disc pl-4 mt-4'>";
+    echo "<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>";
     while($row = mysqli_fetch_assoc($result)) {
-      echo "<li class='mb-2'>" . $row["message"] . "</li>";
+      echo "<div class='bg-white rounded-lg shadow-md p-6'>";
+      echo "<p class='text-gray-700'>" . $row["message"] . "</p>";
+      echo "</div>";
     }
-    echo "</ul>";
+    echo "</div>";
   } else {
     echo "<p class='mt-4'>Tiada pengakuan yang dijumpai.</p>";
   }
   
   // Close the database connection
   mysqli_close($connection);
-  ?>
-</div>
+?>
 
 <?php
 include('Components/footer.php');

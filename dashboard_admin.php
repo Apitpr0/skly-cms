@@ -65,22 +65,30 @@ $ic = $_SESSION['ic'];
                 <?php echo $info["topics"]; ?>
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
-              <?php echo $info["appointment_date"]; ?>
+              <?php $date_Appointment = $info["appointment_date"]; 
+              $startDate = strtotime(date('Y-m-d', strtotime($date_Appointment) ) );
+              $currentDate = strtotime(date('Y-m-d'));
+              if ($startDate < $currentDate) {
+                echo '<span class="text-red-500 font-bold text-2xl">Tarikh sudah melepasi masa yang ditetapkan, sila ubah tarikh temujanji</span>';
+            } else {
+                echo $date_Appointment;
+            }
+              ?>
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
                 <?php echo $info["status"]; ?>
               </td>
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
-               <?php echo $info["counselor_id"]; ?>
+               <?php echo $info["name"]; ?>
               </td> 
               <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
 <div class="flex space-x-2 justify-center">
   <div>
-    <button type="button" class="inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><a href="updateappoiments.php?update_id=<?php echo $info[
+    <button type="button" class="inline-block px-6 py-2.5 bg-blue-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"><a href="update.php?appt_id=<?php echo $info[
         "appt_id"
     ]; ?>">Kemaskini</a></button>
     <button type="button" data-modal-toggle="staticModal" class="inline-block px-6 py-2.5 bg-red-800 text-white font-medium text-xs leading-tight uppercase rounded shadow-lg hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
-      <a href="padamappointments.php?appt_id=<?php echo $info["appt_id"]; ?>">Padam</a>
+      <a href="update.php?appt_id=<?php echo $info["appt_id"]; ?>">Padam</a>
     </button>
   </div>
     <div id="staticModal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 p-4 w-full md:inset-0 h-modal md:h-full">
