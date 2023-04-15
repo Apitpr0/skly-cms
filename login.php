@@ -15,52 +15,75 @@ if (isset($_POST['submit'])) {
         $passDB = $row['password'];
         $is_admin = $row['is_admin'];
         $login_attempts = $row['login_attempts'];
+        $is_blocked = $row['is_blocked'];
 
-        $hashed_password = hash('sha512', $password);
-        if ($hashed_password === $passDB) {
-            // Reset login attempts if user logs in successfully
-            $reset_query = "UPDATE users SET login_attempts = 0 WHERE ic='$ic'";
-            mysqli_query($connection, $reset_query);
-
-            // Get the user's profile picture data
-            $picture_data = $row['profile_picture'];
-
-            session_start();
-            $_SESSION['ic'] = $ic;
-            $_SESSION['is_admin'] = $is_admin;
-            $_SESSION['profile_picture'] = base64_encode($picture_data); // Store the picture data as a session variable
-
-            if ($is_admin == 1) {
-                header('Location: dashboard_admin.php');
-            } else {
-                header('Location: index.php');
-            }
-            exit;
+        if ($is_blocked == 1) {
+            $msg = "Akaun anda telah diblok. Sila hubungi pentadbir sistem.";
         } else {
-            // Increment login attempts if user enters incorrect password
-            $login_attempts++;
+            $hashed_password = hash('sha512', $password);
+            if ($hashed_password === $passDB) {
+                // Reset login attempts if user logs in successfully
+                $reset_query = "UPDATE users SET login_attempts = 0 WHERE ic='$ic'";
+                mysqli_query($connection, $reset_query);
 
-            if ($login_attempts >= 3) {
-                // Block the user if they have exceeded the maximum number of login attempts
-                $query = "UPDATE users SET is_blocked = 1 WHERE ic='$ic'";
-                mysqli_query($connection, $query) or die(mysqli_error($connection));
-                $msg = "Kata laluan salah. Anda telah mencuba untuk log masuk lebih daripada 3 kali dan akaun anda telah diblok.";
+                // Get the user's profile picture data
+                $picture_data = $row['profile_picture'];
+
+                session_start();
+                $_SESSION['ic'] = $ic;
+                $_SESSION['is_admin'] = $is_admin;
+                $_SESSION['profile_picture'] = base64_encode($picture_data); // Store the picture data as a session variable
+
+                if ($is_admin == 1) {
+                    header('Location: dashboard_admin.php');
+                } else {
+                    header('Location: index.php');
+                }
+                exit;
             } else {
-                $msg = "Kata laluan salah. Sila cuba lagi.";
-            }
+                // Increment login attempts if user enters incorrect password
+                $login_attempts++;
 
-            // Update the login_attempts column in the database
-            $query = "UPDATE users SET login_attempts = $login_attempts WHERE ic='$ic'";
-            mysqli_query($connection, $query) or die(mysqli_error($connection));
+                if ($login_attempts >= 3) {
+                    // Block the user if they have exceeded the maximum number of login attempts
+                    $query = "UPDATE users SET is_blocked = 1 WHERE ic='$ic'";
+                    mysqli_query($connection, $query) or die(mysqli_error($connection));
+                    $msg = "Kata laluan salah. Anda telah mencuba untuk log masuk lebih daripada 3 kali dan akaun anda telah diblok.";
+                } else {
+                    $msg = "Kata laluan salah. Sila cuba lagi.";
+
+                    // Update the login_attempts column in the database
+                    $query = "UPDATE users SET login_attempts = $login_attempts WHERE ic='$ic'";
+                    mysqli_query($connection, $query) or die(mysqli_error($connection));
+                }
+            }
         }
     } else {
         $msg = "No Kad Pengenalan atau Kata Laluan salah. Sila cuba lagi.";
+
+        // Block the user if they do not exist in the database
+        $query = "SELECT * FROM users WHERE ic='$ic'";
+        $result = mysqli_query($connection, $query) or die(mysqli_error($connection));
+        $count = mysqli_num_rows($result);
+
+        if ($count == 0) {
+            $query = "UPDATE users SET is_blocked = 1 WHERE ic='$ic'";
+            mysqli_query($connection, $query) or die(mysqli_error($connection));
+            $msg = "No Kad Pengenalan atau Kata Laluan salah";
+            echo "<script>
+                    document.getElementById('username').disabled = true;
+                    document.getElementById('password').disabled = true;
+                </script>";
+        }
     }
 }
 ?>
 <div class="mt-10 flex justify-center">
     <div class="text-center">
-        <img src="Components/assets/img/school_logo.png" alt="Logo"><br><br>
+        <div class="w-64 mx-auto">
+            <img src="Components/assets/img/school_logo.png" alt="Logo">
+        </div>
+        <br>
         <h4 class="text-lg font-bold">Selamat Kembali, sila daftar masuk</h4><br>
         <?php
         if (isset($msg)) {
@@ -74,8 +97,8 @@ if (isset($_POST['submit'])) {
             <a href="register.php" class="mt-2 inline-block">Belum mempunyai akaun? Daftar di sini.</a>
         </form>
     </div>
-</div>
 
+</div>
 <?php
-include('Components/header.php');
+include('Components/footer.php');
 ?>
