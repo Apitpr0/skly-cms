@@ -6,17 +6,18 @@ $links = array(
   array("name" => "Laman Utama", "url" => "index.php"),
   array("name" => "Tempah", "url" => "booking.php"),
   array("name" => "Pengakuan", "url" => "anonconn.php"),
+  array("name" => "Kuiz ", "url" => "quiz.php"),
   array("name" => "Blog", "url" => "blog.php"),
   array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
 ?>
 
-<nav class="">
+<nav class="w-full">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo and company name -->
       <div class="flex-shrink-0 flex items-center">
-        <img class="h-8 w-8" src="components/assets/img/school_logo.png" alt="Logo">
+        <img class="h-12 w-12" src="components/assets/img/school_logo.png" alt="Logo">
         <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
       </div>
       <!-- Link and profile picture -->
@@ -36,3 +37,4 @@ $links = array(
     </div>
   </div>
 </nav>
+
