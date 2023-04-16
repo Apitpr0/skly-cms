@@ -35,7 +35,7 @@ include('Components/navbar.php');
     <label for="post_content" class="block text-gray-700 font-bold mb-2">Mesej</label>
     <textarea id="post_content" name="post_content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
   </div>
-  
+
   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
     Submit
   </button>
@@ -49,20 +49,22 @@ include('Components/navbar.php');
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
     <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
-    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-      <a href="#" class="block">
-        <img class="h-48 w-full object-cover object-center" src="https://source.unsplash.com/featured/?nature" alt="<?php echo $row2['post_title']; ?>">
-      </a>
-      <div class="p-6">
-        <a href="#" class="block text-blue-500 font-semibold mb-2"><?php echo $row2['post_title']; ?></a>
-        <p class="text-gray-700 mb-4"><?php echo substr($row2['post_content'], 0, 150); ?>...</p>
-        <div class="flex justify-between items-center">
-          <span class="text-gray-600 text-sm"><?php echo date('d M Y', strtotime($row2['date_published'])); ?></span>
-          <a href="#" class="text-blue-500 text-sm font-semibold hover:text-blue-600">Read more</a>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <a href="#" class="block">
+          <img class="h-48 w-full object-cover object-center" src="https://source.unsplash.com/featured/?nature" alt="<?php echo $row2['post_title']; ?>">
+        </a>
+        <div class="p-6">
+          <a href="#" class="block text-blue-500 font-semibold mb-2"><?php echo $row2['post_title']; ?></a>
+          <p class="text-gray-700 mb-4"><?php echo substr($row2['post_content'], 0, 150); ?>...</p>
+          <div class="flex justify-between items-center">
+            <span class="text-gray-600 text-sm"><?php echo date('d M Y', strtotime($row2['date_published'])); ?></span>
+            <a href="blog_post.php?id=<?php echo $row2['id']; ?>" class="text-blue-500 text-sm font-semibold hover:text-blue-600">Read more</a>
+          </div>
+
         </div>
       </div>
-    </div>
-    <?php } // end while loop ?>
+    <?php } // end while loop 
+    ?>
     <?php if (mysqli_num_rows($result2) == 0) {
       echo "<p class='text-center text-gray-600'>No blog posts found.</p>";
     } ?>
@@ -71,6 +73,7 @@ include('Components/navbar.php');
 
 
 <?php
-  // Close the database connection
-  mysqli_close($connection);
+// Close the database connection
+mysqli_close($connection);
+include('Components/footer.php');
 ?>
