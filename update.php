@@ -1,6 +1,7 @@
 <?php
 include 'components/db/db_connection.php';
-if(isset($_POST['submit'])) {
+include 'components/header.php';
+if (isset($_POST['submit'])) {
     $appt_id = $_POST['appt_id'];
     $name = $_POST['name'];
     $appt_date = $_POST['appt_date'];
@@ -9,7 +10,7 @@ if(isset($_POST['submit'])) {
     $sql = "UPDATE appointment SET name='$name', appointment_date='$appt_date' WHERE appt_id='$appt_id'";
     $result = mysqli_query($connection, $sql);
 
-    if($result) {
+    if ($result) {
         echo "Appointment record updated successfully!";
     } else {
         echo "Error updating appointment record: " . mysqli_error($connection);
@@ -19,22 +20,24 @@ if(isset($_POST['submit'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Kemaskini Temujanji</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.1.2/tailwind.min.css">
 </head>
+
 <body>
     <div class="max-w-md mx-auto py-4">
         <h1 class="text-2xl font-bold mb-4">Kemaskini Temujanji</h1>
         <?php
-        if(isset($_GET['appt_id'])) {
+        if (isset($_GET['appt_id'])) {
             $appt_id = $_GET['appt_id'];
             $sql = "SELECT * FROM appointment WHERE appt_id='$appt_id'";
             $result = mysqli_query($connection, $sql);
 
-            if(mysqli_num_rows($result) > 0) {
+            if (mysqli_num_rows($result) > 0) {
                 $row = mysqli_fetch_assoc($result);
-                ?>
+        ?>
                 <form method="post" action="">
                     <input type="hidden" name="appt_id" value="<?php echo $row['appt_id']; ?>">
                     <div class="mb-4">
@@ -50,15 +53,13 @@ if(isset($_POST['submit'])) {
                         <a href="dashboard_admin.php" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Kembali ke paparan admin</a>
                     </div>
                 </form>
-                <?php
+        <?php
             } else {
                 echo "Tiada rekod temujanji dijumpai.";
             }
-        }
-        else {
+        } else {
             echo "Invalid request.";
         }
         ?>
     </div>
-</body>
-</html>
+    include 'components/footer.php';
