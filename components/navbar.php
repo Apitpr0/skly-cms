@@ -21,7 +21,7 @@ $links = array(
         <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
       </div>
       <!-- Link and profile picture -->
-      <div class="flex items-center bg-white p-1 rounded">
+      <div class="flex items-center p-1 rounded">
         <?php foreach($links as $link) { ?>
           <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-1 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
         <?php } 
@@ -37,4 +37,5 @@ $links = array(
     </div>
   </div>
 </nav>
+
 

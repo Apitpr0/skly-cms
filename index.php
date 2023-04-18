@@ -18,7 +18,7 @@ include('Components/auth.php');
 			</div>
 		</div>
 		<div class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-			<img src="Components/assets/img/elo.png" alt="" class="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
+			<img src="Components/assets/img/test2.jpg" alt="" class="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
 		</div>
 	</div>
 </section>
