@@ -62,4 +62,3 @@ if (isset($_POST['submit'])) {
         }
         ?>
     </div>
-    include 'components/footer.php';
