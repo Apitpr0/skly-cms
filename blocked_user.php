@@ -5,27 +5,28 @@ include("components/navbar.php");
 
 // Check if the current user is an admin
 $is_admin = false;
-
-// Check if the current user is an admin
-$is_admin = false;
-
+// echo $_SESSION['user_id'];
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $query = "SELECT * FROM users WHERE id = $user_id";
     $result = mysqli_query($connection, $query);
+
+    // echo $_SESSION['user_id'];
+    // echo $user_id;
+    // echo $result;
 
     if (!$result) {
         die('Error querying database: ' . mysqli_error($connection));
     }
 
     $user = mysqli_fetch_assoc($result);
+    echo '$user: ' . ($user ? 'true' : 'false');
 
     if ($user && $user['is_admin'] == 1) {
         $is_admin = true;
+        echo '$is_admin: ' . ($is_admin ? 'true' : 'false');
     }
 }
-
-
 // Retrieve a list of all users
 $users = array();
 
