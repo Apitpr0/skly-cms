@@ -1,10 +1,10 @@
 <?php
+include('Components/header.php');
 error_reporting(0);
 ?>
 <?php
 include('Components/db/db_connection.php');
 include('Components/navbar.php');
-include('Components/header.php');
 //include files for phpmailer
 require 'Components/phpmailer/Exception.php';
 require 'Components/phpmailer/PHPMailer.php';
