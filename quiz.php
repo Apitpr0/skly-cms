@@ -5,24 +5,29 @@ include('components/navbar.php');
 
 <body class="bg-gray-200 p-4">
     <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6">
-        <h1 class="text-xl font-bold mb-4">PHP Quiz</h1>
+        <h1 class="text-xl font-bold mb-4">Kenali Diri Anda</h1>
         <form method="POST">
             <?php
             $quiz_questions = array(
                 array(
-                    "question" => "What is the capital of France?",
-                    "options" => array("London", "Paris", "Berlin", "Madrid"),
-                    "answer" => "Paris"
+                    "question" => "Bagaimana anda biasanya mengatasi situasi yang menimbulkan stres atau kecemasan di sekolah?",
+                    "options" => array("Saya mencuba untuk menghindari situasi tersebut", "Saya bercakap dengan kawan-kawan saya tentang situasi tersebut", "Saya mencari sokongan dari keluarga saya", "Saya cuba untuk bertenang dan bernafas dalam-dalam, dan saya bercakap dengan guru atau kaunselor sekolah saya jika saya memerlukan bantuan")
                 ),
                 array(
-                    "question" => "What is the highest mountain in the world?",
-                    "options" => array("Mount Kilimanjaro", "Mount Everest", "Mount Denali", "Mount Aconcagua"),
-                    "answer" => "Mount Everest"
+                    "question" => "Seberapa sering anda bercakap dengan kawan atau keluarga anda tentang masalah-masalah pribadi anda?",
+                    "options" => array("Jarang Sekali", "Kadang-Kadang", "Sering", "Selalu")
                 ),
                 array(
-                    "question" => "Who invented the telephone?",
-                    "options" => array("Thomas Edison", "Alexander Graham Bell", "Nikola Tesla", "Guglielmo Marconi"),
-                    "answer" => "Alexander Graham Bell"
+                    "question" => "Apa yang anda lakukan jika anda merasa tidak nyaman atau tidak aman di sekolah?",
+                    "options" => array("Saya mencuba untuk menghindari situasi tersebut", "Saya bercakap dengan rakan-rakan saya tentang keadaan itu.", "Saya mencari sokongan dari keluarga saya", "Saya bercakap dengan guru atau orang dewasa yang dipercayai di sekolah untuk mendapatkan bantuan")
+                ),
+                array(
+                    "question" => "Bagaimana anda rancang dan mengatur waktu anda untuk menyelesaikan tugas-tugas sekolah?",
+                    "options" => array("Saya menyelesaikan tugas-tugas saya secepat mungkin, tanpa perlu rancang atau mengatur waktu", "Saya membuat jadual untuk menyelesaikan tugas-tugas saya", "Saya menyelesaikan tugas-tugas saya pada minit terakhir", "Saya meminta bantuan orang lain untuk menyelesaikan tugas-tugas saya")
+                ),
+                array(
+                    "question" => "Apakah anda biasanya mengambil tanggung jawab untuk tugas-tugas sekolah atau lebih suka bergantung dengan orang lain?",
+                    "options" => array("Saya biasanya mengambil tanggung jawab untuk tugas-tugas sekolah", "Saya lebih suka bergantung kepada orang lain untuk menyelesaikan tugas-tugas saya", "Saya mengambil tanggung jawab untuk beberapa tugas, tetapi bergantung kepada orang lain untuk yang lainnya", "Saya tidak suka menyelesaikan tugas-tugas sekolah")
                 )
             );
 
@@ -30,7 +35,7 @@ include('components/navbar.php');
                 echo '<div class="my-4">';
                 echo '<p class="font-bold">' . $question['question'] . '</p>';
                 foreach ($question['options'] as $option) {
-                    echo '<label class="inline-flex items-center mt-2">';
+                    echo '<label class="inline-flex items-center mt-2 ml-4">';
                     echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="' . $option . '">';
                     echo '<span class="ml-2">' . $option . '</span>';
                     echo '</label>';

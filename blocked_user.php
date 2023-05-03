@@ -5,28 +5,24 @@ include("components/navbar.php");
 
 // Check if the current user is an admin
 $is_admin = false;
-// echo $_SESSION['user_id'];
+
+// Retrieve the current user's information
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $query = "SELECT * FROM users WHERE id = $user_id";
     $result = mysqli_query($connection, $query);
-
-    // echo $_SESSION['user_id'];
-    // echo $user_id;
-    // echo $result;
 
     if (!$result) {
         die('Error querying database: ' . mysqli_error($connection));
     }
 
     $user = mysqli_fetch_assoc($result);
-    echo '$user: ' . ($user ? 'true' : 'false');
 
     if ($user && $user['is_admin'] == 1) {
         $is_admin = true;
-        echo '$is_admin: ' . ($is_admin ? 'true' : 'false');
     }
 }
+
 // Retrieve a list of all users
 $users = array();
 
@@ -37,9 +33,16 @@ while ($row = mysqli_fetch_assoc($result)) {
     $users[] = $row;
 }
 
-echo '$is_admin: ' . ($is_admin ? 'true' : 'false');
-
+// Debugging output
+var_dump(isset($_SESSION['user_id']));
+var_dump($result);
+var_dump(mysqli_fetch_assoc($result));
+var_dump(isset($user));
+var_dump($is_admin);
+var_dump(isset($user['is_admin']) ? $user['is_admin'] : null);
 ?>
+
+
 
 <div class="container mx-auto py-8">
 
@@ -59,7 +62,10 @@ echo '$is_admin: ' . ($is_admin ? 'true' : 'false');
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($users as $user) : ?>
+            <?php
+            mysqli_data_seek($result, 0);
+            foreach ($users as $user) :
+            ?>
                 <?php if ($user['is_blocked'] == 1) : ?>
                     <tr>
                         <td class="border px-4 py-2"><?php echo $user['id']; ?></td>

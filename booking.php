@@ -4,12 +4,11 @@ include('Components/header.php');
 include('Components/navbar.php');
 include('Components/footer.php');
 
-
 //check if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$counselor_name = $_POST['counselor-name'];
 	$session_time = $_POST['session-time'];
-	$session_date = $_POST['session-date']; // added session date
+	$session_date = $_POST['session-date'];
 	$status = $_POST['counseling-type'];
 	$icnum = $_POST['client-ic'];
 	$phone = $_POST['client-phone'];
@@ -18,15 +17,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	//Convert session_time to datetime format
 	$session_datetime = date("Y-m-d H:i:s", strtotime($session_date . " " . $session_time));
 
-	//Insert data into db
-	$query = "INSERT INTO appointment (name,appointment_date,status,topics,phone_number) VALUES ('$counselor_name','$session_datetime','$status','$topics','$phone')";
-	mysqli_query($connection, $query);
+	// Check if appointment already exists
+	$query = "SELECT COUNT(*) as count FROM appointment WHERE appointment_date = '$session_datetime'";
+	$result = mysqli_query($connection, $query);
+	$count = mysqli_fetch_assoc($result)['count'];
 
-	//Check if data was inserted
-	if (mysqli_affected_rows($connection) > 0) {
-		echo "Tempahan Disahkan";
+	if ($count > 0) {
+		// Appointment already exists, output error message
+		echo "Tempahan gagal, waktu yang anda pilih telah ditempah. Sila pilih waktu yang lain.";
 	} else {
-		echo "Tempahan Tidak Disahkan, sila cuba lagi";
+		// Insert data into db
+		$query = "INSERT INTO appointment (name,appointment_date,status,topics,phone_number) VALUES ('$counselor_name','$session_datetime','$status','$topics','$phone')";
+		mysqli_query($connection, $query);
+
+		// Check if data was inserted
+		if (mysqli_affected_rows($connection) > 0) {
+			echo "Tempahan Disahkan";
+		} else {
+			echo "Tempahan Tidak Disahkan, sila cuba lagi";
+		}
 	}
 }
 ?>
