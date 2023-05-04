@@ -10,23 +10,43 @@ include('components/navbar.php');
             <?php
             $quiz_questions = array(
                 array(
-                    "question" => "Bagaimana anda biasanya mengatasi situasi yang menimbulkan stres atau kecemasan di sekolah?",
+                    "question" => "1. Saya dapati diri saya sukar ditenteramkan ",
                     "score" => 1
                 ),
                 array(
-                    "question" => "Seberapa sering anda bercakap dengan kawan atau keluarga anda tentang masalah-masalah pribadi anda?",
+                    "question" => "2. Saya sedar mulut saya terasa kering",
                     "score" => 1
                 ),
                 array(
-                    "question" => "Apa yang anda lakukan jika anda merasa tidak nyaman atau tidak aman di sekolah?",
+                    "question" => "3. Saya tidak dapat mengalami perasaan positif sama sekali",
                     "score" => 1
                 ),
                 array(
-                    "question" => "Bagaimana anda rancang dan mengatur waktu anda untuk menyelesaikan tugas-tugas sekolah?",
+                    "question" => "4. Saya mengalami kesukaran bernafas (contohnya pernafasan yang laju, tercungap-cungap walaupun tidak melakukan senaman fizikal)",
                     "score" => 1
                 ),
                 array(
-                    "question" => "Apakah anda biasanya mengambil tanggung jawab untuk tugas-tugas sekolah atau lebih suka bergantung dengan orang lain?",
+                    "question" => "5. Saya cenderung untuk bertindak keterlaluan dalam sesuatu keadaan",
+                    "score" => 1
+                ),
+                array(
+                    "question" => "6. Saya rasa menggeletar (contohnya pada tangan)",
+                    "score" => 1
+                ),
+                array(
+                    "question" => "7. Saya rasa saya menggunakan banyak tenaga dalam keadaan cemas",
+                    "score" => 1
+                ),
+                array(
+                    "question" => "8. Saya bimbang keadaan di mana saya mungkin menjadi panik dan melakukan perkara yang membodohkan diri sendiri",
+                    "score" => 1
+                ),
+                array(
+                    "question" => "9. Saya rasa saya tidak mempunyai apa-apa untuk diharapkan",
+                    "score" => 1
+                ),
+                array(
+                    "question" => "10. Saya dapati diri saya semakin gelisah",
                     "score" => 1
                 )
             );
@@ -36,26 +56,23 @@ include('components/navbar.php');
                 echo '<p class="font-bold">' . $question['question'] . '</p>';
                 echo '<label class="inline-flex items-center mt-2 ml-4">';
                 echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="1">';
-                echo '<span class="ml-2">1</span>';
+                echo '<span class="ml-2">Selalu</span>';
                 echo '</label>';
                 echo '<label class="inline-flex items-center mt-2 ml-4">';
                 echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="2">';
-                echo '<span class="ml-2">2</span>';
+                echo '<span class="ml-2">Kerap</span>';
                 echo '</label>';
                 echo '<label class="inline-flex items-center mt-2 ml-4">';
                 echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="3">';
-                echo '<span class="ml-2">3</span>';
+                echo '<span class="ml-2">Kadang-Kadang</span>';
                 echo '</label>';
                 echo '<label class="inline-flex items-center mt-2 ml-4">';
                 echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="4">';
-                echo '<span class="ml-2">4</span>';
-                echo '</label>';
-                echo '<label class="inline-flex items-center mt-2 ml-4">';
-                echo '<input type="radio" class="form-radio text-indigo-600" name="answer[' . $key . ']" value="5">';
-                echo '<span class="ml-2">5</span>';
+                echo '<span class="ml-2">Jarang</span>';
                 echo '</label>';
                 echo '</div>';
             }
+
 
             ?>
             <button class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded" type="submit" name="submit">Hantar</button>
