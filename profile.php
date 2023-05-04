@@ -3,6 +3,7 @@ include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
 include('Components/auth.php');
+$is_admin = $_SESSION['is_admin'];
 if (isset($_POST["update"])) {
   $fileName = basename($_FILES["image"]["name"]);
   $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
@@ -24,6 +25,13 @@ if (isset($_POST["update"])) {
     $errorMessage = "Invalid file type. Allowed file types are " . implode(", ", $allowTypes);
     die($errorMessage);
   }
+} else if (isset($_POST['submit2'])) {
+  if ($is_admin == 1) {
+    header('Location: dashboard_admin.php');
+  } else {
+    header('Location: index.php');
+  }
+
 
 
   if ($result) { ?>
@@ -50,8 +58,10 @@ if (isset($_POST["update"])) {
 }
 ?>
 <div class="p-8 m-8 bg-white rounded-lg">
-  <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="dashboard_admin.php">Kembali</a></button>
+<form method="post">
+  <button type="submit" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" name="submit2">Kembali</button>
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out"><a href="components/logout.php">Log Keluar</a></button>
+</form>
 
 </div>
 <?php
