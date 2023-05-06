@@ -96,9 +96,16 @@ if (isset($_POST['submit'])) {
             <input class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2" type="submit" name="submit" value="Log Masuk"><br>
             <a href="register.php" class="mt-2 inline-block">Belum mempunyai akaun? Daftar di sini.</a>
         </form>
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $ic = trim(filter_var($_POST['ic'], FILTER_SANITIZE_STRING));
+            $password = trim($_POST['password']);
+            // further processing
+        }
+        ?>
     </div>
-
 </div>
+
 <?php
 include('Components/footer.php');
 ?>
