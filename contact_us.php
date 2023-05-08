@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   //Check if data was inserted
   if (mysqli_affected_rows($connection) > 0) {
-    echo "Message sent!";
+    echo '<div class="bg-green-500 text-white font-bold py-2 px-4 rounded mb-4">Message sent!</div>';
   } else {
-    echo "Message no send";
+    echo '<div class="bg-red-500 text-white font-bold py-2 px-4 rounded mb-4">Message not sent</div>';
   }
 }
 ?>

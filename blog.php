@@ -1,7 +1,9 @@
 <?php
 // Include database connection code
 include('Components/db/db_connection.php');
-//include('Components/auth.php');
+// Include header and navbar
+include('Components/header.php');
+include('Components/navbar.php');
 
 // Check if form has been submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -19,9 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Fetch blog posts from database
 $query2 = "SELECT * FROM blog_posts ORDER BY date_published";
 $result2 = mysqli_query($connection, $query2);
-// Include header and navbar
-include('Components/header.php');
-include('Components/navbar.php');
+
 ?>
 
 <!-- Blog submission form -->

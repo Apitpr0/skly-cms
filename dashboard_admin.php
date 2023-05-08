@@ -9,7 +9,7 @@ if ($_SESSION['is_admin'] != 1) {
   header('Location: login.php');
 }
 
-echo $_SESSION['is_admin'];
+
 
 ?>
 <h1 class="pl-10 font-medium leading-tight text-5xl pt-1 text-black">ADMIN DASHBOARD</h1>
