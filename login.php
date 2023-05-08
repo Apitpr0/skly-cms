@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 include('Components/db/db_connection.php');
 include('Components/header.php');
 
@@ -35,8 +38,10 @@ if (isset($_POST['submit'])) {
                 $_SESSION['profile_picture'] = base64_encode($picture_data); // Store the picture data as a session variable
 
                 if ($is_admin == 1) {
+                    $_SESSION['is_admin'] = $is_admin; //1
                     header('Location: dashboard_admin.php');
                 } else {
+                    $_SESSION['is_admin'] = $is_admin; //0
                     header('Location: index.php');
                 }
                 exit;
