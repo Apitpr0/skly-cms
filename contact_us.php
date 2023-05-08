@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $mail->Password = $gm_pass;
   $mail->Subject = "SKLY-CMS : Mesej dari Pengguna";
   $mail->setFrom($_POST['email']);
-  $mail->addAddress("apitpro123@gmail.com"); 
+  $mail->addAddress("apitpro123@gmail.com");
   $mail->isHTML(true);
   $mail->Body = ($_POST['message']);
   $mail->send();
