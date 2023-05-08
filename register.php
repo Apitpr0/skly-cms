@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         $msg = "Password must be at least 8 characters long and contain at least one letter and one number";
     } else {
         $hashed_password = hash('sha512', $password);
-        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password,is_admin) VALUES ('$ic', '$nama', '$hashed_password', '$is_admin')")) {
+        if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', '$nama', '$hashed_password')")) {
             $msg = "An error occurred while registering. Please try again.";
         } else {
             header("Location: login.php");
@@ -31,9 +31,9 @@ if (isset($_POST['submit'])) {
 <div class="min-h-screen flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Daftar</h2>
-        <?php 
-        if(isset($msg)) {
-            echo '<div class="mt-2 text-center text-sm text-red-600">'.$msg.'</div>';
+        <?php
+        if (isset($msg)) {
+            echo '<div class="mt-2 text-center text-sm text-red-600">' . $msg . '</div>';
         }
         ?>
         <form class="mt-8 space-y-6" method="post">
@@ -55,12 +55,7 @@ if (isset($_POST['submit'])) {
                     <input id="cpass" name="cpass" type="password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Sahkan Kata Laluan">
                 </div>
             </div>
-                <div>
-        <label for="is_admin" class="flex items-center">
-            <input id="is_admin" name="is_admin" type="checkbox" class="form-checkbox" value="1">
-            <span class="ml-2 text-sm text-gray-600">Daftar Sebagai Pentadbir?</span>
-        </label>
-            </div>
+
 
 
             <div>
@@ -71,6 +66,6 @@ if (isset($_POST['submit'])) {
         </form>
     </div>
 </div>
- <?php
+<?php
 include('Components/header.php');
 ?>

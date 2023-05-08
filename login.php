@@ -98,7 +98,7 @@ if (isset($_POST['submit'])) {
         </form>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $ic = trim(filter_var($_POST['ic'], FILTER_SANITIZE_STRING));
+            $ic = trim(filter_var($_POST['ic'], FILTER_SANITIZE_FULL_SPECIAL_CHARS));
             $password = trim($_POST['password']);
             // further processing
         }

@@ -3,6 +3,7 @@ include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
 include('Components/auth.php');
+
 ?>
 <section class="">
 	<div class="container flex flex-col justify-center  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-around">
