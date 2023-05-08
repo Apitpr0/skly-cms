@@ -1,8 +1,14 @@
 <?php
+include('Components/navbar.php');
 include('Components/db/db_connection.php');
 include('Components/header.php');
-include('Components/navbar.php');
 include('Components/auth.php');
+
+if ($_SESSION['is_admin'] != 0) {
+	header('Location: login.php');
+}
+
+
 ?>
 <section class="">
 	<div class="container flex flex-col justify-center  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-around">
