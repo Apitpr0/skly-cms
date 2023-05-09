@@ -5,18 +5,6 @@ include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
 
-// Check if form has been submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Get values from form
-  $post_title = $_POST['post_title'];
-  $post_content = $_POST['post_content'];
-  $date_published = date("Y-m-d H:i:s");
-
-  // Insert new blog post into database
-  $query = "INSERT INTO blog_posts (post_title, post_content, date_published) 
-            VALUES ('$post_title', '$post_content', '$date_published')";
-  mysqli_query($connection, $query);
-}
 
 // Fetch blog posts from database
 $query2 = "SELECT * FROM blog_posts ORDER BY date_published";
@@ -24,22 +12,6 @@ $result2 = mysqli_query($connection, $query2);
 
 ?>
 
-<!-- Blog submission form -->
-<form method="post" class="my-8 mx-auto max-w-lg">
-  <div class="mb-4">
-    <label for="post_title" class="block text-gray-700 font-bold mb-2">Tajuk</label>
-    <input type="text" id="post_title" name="post_title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-  </div>
-
-  <div class="mb-6">
-    <label for="post_content" class="block text-gray-700 font-bold mb-2">Mesej</label>
-    <textarea id="post_content" name="post_content" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
-  </div>
-
-  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-    Submit
-  </button>
-</form>
 
 <!-- Blog posts section -->
 <div class="my-8 mx-auto max-w-4xl">
