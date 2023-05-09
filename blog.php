@@ -23,8 +23,9 @@ $result2 = mysqli_query($connection, $query2);
     <?php while ($row2 = mysqli_fetch_assoc($result2)) { ?>
       <div class="bg-white rounded-lg shadow-md overflow-hidden">
         <a href="#" class="block">
-          <img class="h-48 w-full object-cover object-center" src="https://source.unsplash.com/featured/?nature" alt="<?php echo $row2['post_title']; ?>">
+          <img class="h-48 w-full object-cover object-center" src="uploads/<?php echo $row2['post_image']; ?>" alt="<?php echo $row2['post_title']; ?>">
         </a>
+
         <div class="p-6">
           <a href="#" class="block text-blue-500 font-semibold mb-2"><?php echo $row2['post_title']; ?></a>
           <p class="text-gray-700 mb-4"><?php echo substr($row2['post_content'], 0, 150); ?>...</p>

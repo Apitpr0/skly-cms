@@ -17,9 +17,7 @@ if (isset($_POST["update"])) {
     $imgContent = addslashes(file_get_contents($image));
     $result = mysqli_query(
       $connection,
-      "UPDATE users SET
-          profile_picture='$imgContent',name='$NAMES',password='$hashed_password'
-          WHERE ic='$IC'"
+      "UPDATE users SET profile_picture='$imgContent',name='$NAMES',password='$hashed_password' WHERE ic='$IC'"
     );
   } else {
     $errorMessage = "Invalid file type. Allowed file types are " . implode(", ", $allowTypes);
@@ -58,13 +56,16 @@ if (isset($_POST["update"])) {
 }
 ?>
 <div class="p-8 m-8 bg-white rounded-lg">
-<form method="post">
-  <button type="submit" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" name="submit2">Kembali</button>
-  <a href="components/logout.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
-    Log Keluar
-</a>
+  <form method="post">
+    <button type="submit" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" name="submit2">Kembali</button>
+    <a href="components/logout.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+      Log Keluar
+    </a>
+    <!-- <a href="update_password.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+      Kemaskini Kata Laluan
+    </a> -->
 
-</form>
+  </form>
 
 </div>
 <?php
@@ -91,10 +92,6 @@ while ($res = mysqli_fetch_array($result)) {
         <div class="mt-4">
           <label class="block">Nama</label>
           <input name="NAMES" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="<?php echo $NAME; ?>">
-        </div>
-        <div class="mt-4">
-          <label class="block">Kata Laluan</label>
-          <input name="PASS" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600">
         </div>
         <div class="flex items-baseline justify-between">
           <button type="submit" name="update" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Kemaskini</button>

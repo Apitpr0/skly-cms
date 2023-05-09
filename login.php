@@ -99,7 +99,15 @@ if (isset($_POST['submit'])) {
             <input class="border border-gray-300 p-2 rounded-md w-64" type="" name="ic" placeholder="No Kad Pengenalan" required><br>
             <input class="border border-gray-300 p-2 rounded-md w-64 mt-2" type="password" name="password" placeholder="Kata Laluan" required><br>
             <input class="bg-blue-500 text-white px-4 py-2 rounded-md mt-2" type="submit" name="submit" value="Log Masuk"><br>
-            <a href="register.php" class="mt-2 inline-block">Belum mempunyai akaun? Daftar di sini.</a>
+            <a href="register.php" class="mt-2 inline-block text-blue-500 hover:text-blue-700 font-medium">
+                Belum mempunyai akaun? <span class="underline">Daftar di sini</span>
+            </a>
+            <br>
+            <a href="reset_password.php" class="mt-2 inline-block text-blue-500 hover:text-blue-700 font-medium">
+                Lupa Kata Laluan?<span class="underline">Set semula di sini</span>
+            </a>
+
+
         </form>
         <?php
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
