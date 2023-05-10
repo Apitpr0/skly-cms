@@ -57,11 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<div class="mb-4">
 				<label for="counselor-name" class="block text-gray-700 font-bold mb-2">Nama Kaunselor:</label>
 				<select id="counselor-name" name="counselor-name" class="w-full p-2 border rounded-md" required>
-					<option value="" disabled selected>Pilih Kaunselor</option>
-					<option value="Kaunselor 1">Kaunselor 1</option>
-					<option value="Kaunselor 2">Kaunselor 2</option>
+					<option value="Mohd Khairulizam bin Ismail" selected>Mohd Khairulizam bin Ismail</option>
 				</select>
 			</div>
+
 
 
 			<div class="mb-4">
@@ -70,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<option value="" disabled selected>Pilih Waktu Sesi</option>
 					<option value="08:00:00">8 - 9 AM</option> <!-- converted to datetime format -->
 					<option value="10:00:00">10 - 11 AM</option>
-					<option value="12:00:00">12 - 1 PM</option>
+					<option value="11:00:00">11 - 12 AM</option>
 				</select>
 			</div>
 
