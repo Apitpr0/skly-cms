@@ -17,7 +17,7 @@ if (isset($_POST["update"])) {
     $imgContent = addslashes(file_get_contents($image));
     $result = mysqli_query(
       $connection,
-      "UPDATE users SET profile_picture='$imgContent',name='$NAMES',password='$hashed_password' WHERE ic='$IC'"
+      "UPDATE users SET profile_picture='$imgContent',name='$NAMES' WHERE ic='$IC'"
     );
   } else {
     $errorMessage = "Invalid file type. Allowed file types are " . implode(", ", $allowTypes);

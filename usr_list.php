@@ -33,7 +33,7 @@ if (isset($_POST["demote"])) {
                 <th class="border text-left px-8 py-4">#</th>
                 <th class="border text-left px-8 py-4">Nama</th>
                 <th class="border text-left px-8 py-4">Nombor IC</th>
-                <th class="border text-left px-8 py-4">Pentadbir?</th>
+                <th class="border text-left px-8 py-4">Pentadbir</th>
                 <th class="border text-left px-8 py-4">Tindakan</th>
             </tr>
         </thead>
