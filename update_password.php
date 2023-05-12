@@ -48,18 +48,6 @@ if (isset($_POST['submit'])) {
             }
         }
     }
-    // Debugging statement to check current password entered by user
-    echo "Current Password: " . $current_password . "<br>";
-
-    // Debugging statement to check current hashed password in database
-    echo "Current Hashed Password: " . $current_hashed_password . "<br>";
-
-    // Debugging statement to check if password_verify returns true or false
-    if (password_verify($current_password, $current_hashed_password)) {
-        echo "Password Verify: True<br>";
-    } else {
-        echo "Password Verify: False<br>";
-    }
 }
 
 mysqli_close($connection);
