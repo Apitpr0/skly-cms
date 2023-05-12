@@ -16,6 +16,8 @@ $ic = $_SESSION['ic'];
 if (isset($_POST['submit'])) {
     // Get form data
     $current_password = mysqli_real_escape_string($connection, $_POST['current_password']);
+    //hash the current password
+    $old_current_hashed_password = hash('sha512', $current_password);
     $new_password = mysqli_real_escape_string($connection, $_POST['new_password']);
     $confirm_new_password = mysqli_real_escape_string($connection, $_POST['confirm_new_password']);
 
@@ -23,11 +25,11 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT password FROM users WHERE ic='$ic'";
     $result = mysqli_query($connection, $sql);
     $row = mysqli_fetch_assoc($result);
-    $current_hashed_password = $row['password'];
-    $passDB = $row['password'];
+    $current_hashed_password = $row['password']; //password hashed
+
 
     // Check if the current password matches the one in the database
-    if ($current_hashed_password === $passDB) {
+    if ($old_current_hashed_password == $current_password) {
         $error_message = "Kata laluan semasa tidak tepat";
     } else {
         // Check if the new passwords match
