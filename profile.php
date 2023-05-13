@@ -9,9 +9,7 @@ if (isset($_POST["update"])) {
   $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
   $allowTypes = ["jpg", "png", "jpeg", "gif"];
   $IC = $_POST["IC"];
-  $PASS = $_POST["PASS"];
   $NAMES = $_POST["NAMES"];
-  $hashed_password = hash('sha512', $PASS);
   if (in_array($fileType, $allowTypes)) {
     $image = $_FILES["image"]["tmp_name"];
     $imgContent = addslashes(file_get_contents($image));
@@ -101,4 +99,5 @@ while ($res = mysqli_fetch_array($result)) {
     </form>
   </div>
 </div>
+
 <?php include "Components/footer.php"; ?>

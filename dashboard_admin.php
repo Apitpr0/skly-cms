@@ -18,18 +18,28 @@ if ($_SESSION['is_admin'] != 1) {
   $data = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
   $info = mysqli_fetch_array($data);
   ?>
-  <b class="text-lg text-white">Selamat Datang ADMIN
-    <?php echo strtoupper($info["name"]); ?></b><br>
+  <!-- Move the "Selamat Datang ADMIN" text to the top with spacing -->
+  <div class="my-4 text-center">
+    <b class="text-lg text-white">Selamat Datang ADMIN <?php echo strtoupper($info["name"]); ?></b>
+  </div>
+
+  <div style="padding-bottom: 20px;">
+    <center><span class="text-black font-bold text-3xl">Senarai Temujanji</span></center>
+  </div>
+</div>
+
+<div class="text-center">
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onclick="location.href='components/logout.php';">Log Keluar</button>
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onclick="location.href='blocked_user.php';">Pengguna Disekat</button>
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onclick="location.href='usr_list.php';">Pelantikan Pentadbir</button>
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onclick="location.href='adm_blog.php';">Blog Pentadbir</button>
   <button type="button" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onclick="location.href='report_gen.php';">Jana Laporan</button>
-
 </div>
-<center><u class="text-black">Senarai Temujanji</u></center>
+
+
+<!-- <center><span class="text-black text-3xl">Senarai Temujanji</span></center> -->
 <div class="px-8 pb-6 mt-4 flex flex-col ">
-  <div class=" sm:-mx-6 lg:-mx-8">
+  <div class="sm:-mx-6 lg:-mx-8">
     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
       <div class="overflow-hidden rounded-lg">
         <table class="min-w-full text-center">
@@ -48,13 +58,13 @@ if ($_SESSION['is_admin'] != 1) {
                 Status
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
-                Ditugaskan Kepada
+                Kaunselor
               </th>
               <th scope="col" class="text-sm font-medium text-white px-6 py-4">
                 Tindakan
               </th>
             </tr>
-          </thead class="border-b">
+          </thead>
           <tbody>
             <?php
             $data = mysqli_query($connection, "SELECT * FROM appointment");
@@ -62,8 +72,6 @@ if ($_SESSION['is_admin'] != 1) {
               <tr class="bg-gray-400 border-b">
                 <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
                   <?php
-                  //$icUser = $info["ic"];
-                  //echo $ic;
                   $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
                   $row = mysqli_fetch_assoc($result);
                   $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
@@ -74,11 +82,13 @@ if ($_SESSION['is_admin'] != 1) {
                   <?php echo $info["topics"]; ?>
                 </td>
                 <td class="text-base text-white font-medium px-6 py-4 whitespace-nowrap">
-                  <?php $date_Appointment = $info["appointment_date"];
+                  <?php
+                  $date_Appointment = $info["appointment_date"];
                   $startDate = strtotime(date('Y-m-d', strtotime($date_Appointment)));
                   $currentDate = strtotime(date('Y-m-d'));
                   if ($startDate < $currentDate) {
-                    echo '<span class="text-red-500 font-bold text-2xl">Tarikh sudah melepasi masa yang ditetapkan, sila ubah tarikh temujanji</span>';
+                    echo '<span class="text-red-500 font-bold text-xl">Tarikh sudah melepasi masa yang ditetapkan,</span><br>';
+                    echo '<span class="text-red-500 font-bold text-xl">sila ubah tarikh temujanji</span>';
                   } else {
                     echo $date_Appointment;
                   }
@@ -116,29 +126,31 @@ if ($_SESSION['is_admin'] != 1) {
                           <!-- Modal body -->
                           <div class="p-6 space-y-6">
                             <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                              Are you sure want to delete this data?
-                            <p class="text-red-300">this action is irreversible!</p>
+                              Are you sure you want to delete this data?
+                            <p class="text-red-300">This action is irreversible!</p>
                             </p>
                           </div>
                           <!-- Modal footer -->
                           <div class="flex items-center p-6 space-x-2 rounded-b border-t border-gray-200 dark:border-gray-600">
-                            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"><a href="padamappointments.php?delete_id=<?php echo $info["appt_id"]; ?>">YES DELETE! <?php echo $info["appt_id"] ?></a></button>
-                            <button data-modal-toggle="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">CANCEL</button>
+                            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                              <a href="padamappointments.php?delete_id=<?php echo $info["appt_id"]; ?>">YES DELETE! <?php echo $info["appt_id"] ?></a>
+                            </button>
+                            <button data-modal-toggle="staticModal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
+                              CANCEL
+                            </button>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
       </div>
-      </td>
-    <?php }
-    ?>
-    </tr>
-    </tbody>
-    </table>
     </div>
   </div>
-</div>
 </div>
 <?php
 include('Components/footer.php');

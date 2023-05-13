@@ -1,12 +1,7 @@
-html, body {
-  height: 100%;
-  margin: 0;
-}
-
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 100vh;
   background: linear-gradient(243.47deg, #f300c9 0%, #fff215 50%, #46e3fb 100%);
+  background-repeat: no-repeat;
+  background-size: cover; /* optional */
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }

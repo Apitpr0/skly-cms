@@ -24,7 +24,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	if ($count > 0) {
 		// Appointment already exists, output error message
-		echo "Tempahan gagal, waktu yang anda pilih telah ditempah oleh kaunselor lain. Sila pilih waktu yang lain.";
+		echo '<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+				<span class="block sm:inline">Tempahan gagal, waktu yang anda pilih telah ditempah oleh kaunselor lain. Sila pilih waktu yang lain.</span>
+			</div>';
 	} else {
 		// Insert data into db
 		$query = "INSERT INTO appointment (name,appointment_date,status,topics,phone_number) VALUES ('$counselor_name','$session_datetime','$status','$topics','$phone')";
@@ -103,8 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<label for="counseling-type" class="block text-gray-700 font-bold mb-2">Jenis Kaunseling:</label>
 				<select id="counseling-type" name="counseling-type" class="w-full p-2 border rounded-md" required>
 					<option value="" disabled selected>Pilih Jenis Kaunseling</option>
-					<option value="Individual Counseling">Kaunseling Individu</option>
-					<option value="Couples Counseling">Kaunseling Kelompok</option>
+					<option value="Kaunseling Individu">Kaunseling Individu</option>
+					<option value="Kaunseling Kelompok">Kaunseling Kelompok</option>
 				</select>
 			</div>
 
@@ -126,6 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<button type="submit" name="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
 				Tempah
 			</button>
+
 		</form>
 
 	</div>
