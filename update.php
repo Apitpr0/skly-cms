@@ -2,6 +2,7 @@
 include 'components/db/db_connection.php';
 include 'components/header.php';
 include 'components/footer.php';
+
 if (isset($_POST['submit'])) {
     $appt_id = $_POST['appt_id'];
     $name = $_POST['name'];
@@ -12,9 +13,9 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($connection, $sql);
 
     if ($result) {
-        echo "Appointment record updated successfully!";
+        echo "Rekod Temujanji berjaya dikemaskini!";
     } else {
-        echo "Error updating appointment record: " . mysqli_error($connection);
+        echo "Ralat mengemaskini rekod temujanji: " . mysqli_error($connection);
     }
 }
 ?>

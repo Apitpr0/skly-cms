@@ -3,23 +3,6 @@ include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
 include('Components/auth.php');
-
-// Start the session before any output is sent to the browser
-if(isset($_POST['submit'])){
-  // Get the submitted confession message from the POST request
-  $confession = mysqli_real_escape_string($connection,$_POST['confession']);
-  
-  //Insert into db
-  $sql = "INSERT INTO anonymous_confession (message) VALUES ('$confession')";
-  
-  if (mysqli_query($connection, $sql)) {
-    // Set a session variable to store the success message
-    $_SESSION['success_message'] = "Confession submitted successfully!";
-  } else {
-    // Set a session variable to store the error message
-    $_SESSION['error_message'] = "Error submitting confession: " . mysqli_error($connection);
-  }
-}
 ?>
 
 <div class="container mx-auto px-4">
@@ -31,12 +14,12 @@ if(isset($_POST['submit'])){
 
     <?php
     // Check if there is a success message in the session, and display it if it exists
-    if(isset($_SESSION['success_message'])) {
+    if (isset($_SESSION['success_message'])) {
       echo "<p class='text-green-500 mb-4'>" . $_SESSION['success_message'] . "</p>";
       unset($_SESSION['success_message']); // Clear the success message from the session
     }
     // Check if there is an error message in the session, and display it if it exists
-    if(isset($_SESSION['error_message'])) {
+    if (isset($_SESSION['error_message'])) {
       echo "<p class='text-red-500 mb-4'>" . $_SESSION['error_message'] . "</p>";
       unset($_SESSION['error_message']); // Clear the error message from the session
     }
@@ -49,11 +32,11 @@ if(isset($_POST['submit'])){
   // Select all the records from the anonymous_confession table
   $sql = "SELECT * FROM anonymous_confession";
   $result = mysqli_query($connection, $sql);
-  
+
   if (mysqli_num_rows($result) > 0) {
     // Output each record as a list item
     echo "<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>";
-    while($row = mysqli_fetch_assoc($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
       echo "<div class='bg-white rounded-lg shadow-md p-6'>";
       echo "<p class='text-gray-700'>" . $row["message"] . "</p>";
       echo "</div>";
@@ -62,10 +45,11 @@ if(isset($_POST['submit'])){
   } else {
     echo "<p class='mt-4'>Tiada pengakuan yang dijumpai.</p>";
   }
-  
+
   // Close the database connection
   mysqli_close($connection);
-?>
+  ?>
+</div>
 
 <?php
 include('Components/footer.php');
