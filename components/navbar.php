@@ -11,6 +11,7 @@ $links = array(
 );
 $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
 ?>
+
 <nav class="w-full bg-transparent">
   <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
@@ -19,17 +20,17 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
         <img class="h-12 w-12" src="components/assets/img/school_logo.png" alt="Logo">
         <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
       </a>
+
       <!-- Mobile menu options -->
       <div class="hidden sm:flex sm:items-center sm:ml-6" id="mobile-menu">
         <?php foreach ($links as $link) { ?>
           <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
-        <?php
-        }
-        ?>
+        <?php } ?>
         <a href="profile.php">
           <img class="w-10 h-10 rounded-full mt-4" src="<?php echo $picture_base64; ?>" alt="components/assets/img/emptyprofilepicture.jpg">
         </a>
       </div>
+
       <!-- Hamburger menu -->
       <div class="flex sm:hidden">
         <div class="relative">
@@ -40,11 +41,11 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
             <!-- Close icon -->
-            <svg class="hidden h- 6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-              + 6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
+
           <!-- Menu options -->
           <div class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 divide-y divide-gray-200 z-10 hidden" id="mobile-menu">
             <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="mobile-menu">
@@ -58,8 +59,7 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
 </nav>
 
 <script>
