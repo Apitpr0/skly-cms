@@ -39,7 +39,7 @@ if ($_SESSION['is_admin'] != 1) {
 
 <!-- <center><span class="text-black text-3xl">Senarai Temujanji</span></center> -->
 <div class="px-8 pb-6 mt-4 flex flex-col ">
-  <div class="sm:-mx-6 lg:-mx-8 overflow-x-auto">
+  <div class="sm:-mx-6 lg:-mx-8">
     <div class="py-4 inline-block min-w-full sm:px-6 lg:px-8">
       <div class="overflow-hidden rounded-lg">
         <table class="min-w-full text-center">
