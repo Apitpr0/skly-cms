@@ -53,9 +53,12 @@ if (isset($_POST["update"])) {
 <?php }
 }
 ?>
-<div class="p-8 m-8 bg-white rounded-lg">
+<h1 class="text-center font-medium leading-tight text-5xl pt-1 text-black">KEMASKINI PROFIL ANDA</h1>
+<div class="p-4 m-2 bg-transparent flex justify-center items-center">
   <form method="post">
-    <button type="submit" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" name="submit2">Kembali</button>
+    <a href="dashboard_admin.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
+      Kembali
+    </a>
     <a href="components/logout.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
       Log Keluar
     </a>
@@ -64,8 +67,10 @@ if (isset($_POST["update"])) {
     </a>
 
   </form>
-
 </div>
+
+
+
 <?php
 $ic = $_SESSION["ic"];
 $result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
@@ -75,7 +80,7 @@ while ($res = mysqli_fetch_array($result)) {
 }
 ?>
 <div class="flex items-center justify-center">
-  <div class="px-8 py-6 mt-20 text-left bg-white shadow-lg rounded-lg">
+  <div class="px-8 py-6 text-left bg-white shadow-lg rounded-lg">
     <h3 class="text-2xl font-bold">Kemaskini Maklumat <?php echo $NAME; ?></h3>
     <form method="post" enctype='multipart/form-data'>
       <div class="mt-4">
