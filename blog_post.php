@@ -31,16 +31,16 @@ include('Components/header.php');
 include('Components/navbar.php');
 ?>
 
-<!-- Blog post section -->
 <div class="my-8 mx-auto max-w-4xl">
     <div>
-        <h2 class="text-3xl font-bold mb-4"><?php echo $post_title; ?></h2>
-        <p class="text-gray-700">Published on <?php echo $date_published; ?></p>
+        <h2 class="text-3xl font-bold mb-4 leading-tight text-black"> <?php echo $post_title; ?></h2>
+        <p class="text-gray-700 text-sm">Published on <?php echo $date_published; ?></p>
     </div>
     <div class="mt-8">
-        <p class="text-gray-700"><?php echo $post_content; ?></p>
+        <p class="text-gray-700 leading-relaxed"><?php echo $post_content; ?></p>
     </div>
 </div>
+
 
 <?php
 // Close the database connection
