@@ -9,6 +9,7 @@ $links = array(
   array("name" => "Blog", "url" => "blog.php"),
   array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
+$picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
 ?>
 
 <nav class="w-full bg-transparent">
@@ -53,4 +54,18 @@ $links = array(
     const mobileMenu = document.getElementById('mobile-menu');
     mobileMenu.classList.toggle('hidden');
   }
+
+  function closeMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenu.classList.add('hidden');
+  }
+  window.addEventListener('resize', function() {
+    const windowWidth = window.innerWidth;
+    const breakpoint = 640; // Adjust this value to your desired breakpoint
+
+    if (windowWidth > breakpoint) {
+      closeMobileMenu();
+    }
+  });
+  
 </script>

@@ -53,7 +53,8 @@ if (isset($_POST["update"])) {
 <?php }
 }
 ?>
-<div class="p-8 m-8 bg-white rounded-lg">
+<h1 class="text-center font-medium leading-tight text-5xl pt-1 text-black">KEMASKINI PROFIL ANDA</h1>
+<div class="p-4 m-2 bg-transparent flex justify-center items-center">
   <form method="post">
     <button type="submit" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" name="submit2">Kembali</button>
     <a href="components/logout.php" class="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out">
@@ -74,30 +75,35 @@ while ($res = mysqli_fetch_array($result)) {
   $NAME = $res["name"];
 }
 ?>
-<div class="flex items-center justify-center">
-  <div class="px-8 py-6 mt-20 text-left bg-white shadow-lg rounded-lg">
-    <h3 class="text-2xl font-bold">Kemaskini Maklumat <?php echo $NAME; ?></h3>
-    <form method="post" enctype='multipart/form-data'>
-      <div class="mt-4">
+<div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+  <div class="flex items-center justify-center">
+    <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg rounded-lg">
+      <h3 class="text-2xl font-bold">Kemaskini Maklumat <?php echo $NAME; ?></h3>
+      <form method="post" enctype='multipart/form-data'>
         <div class="mt-4">
-          <label class="block" for="file_input">Masukkan Gambar anda [Tinggalkan kosong jika tiada perubahan]</label>
-          <input type="file" name="image">
-        </div>
-        <div class="mt-4">
-          <label class="block">IC</label>
-          <input name="IC" type="text" readonly="readonl" class="w-full px-4 py-2 mt-2 border bg-gray-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" maxlength="5" value="<?php echo $ic; ?>">
-        </div>
-        <div class="mt-4">
-          <label class="block">Nama</label>
-          <input name="NAMES" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="<?php echo $NAME; ?>">
-        </div>
-        <div class="flex items-baseline justify-between">
-          <button type="submit" name="update" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Kemaskini</button>
-          <button type="reset"><a class="text-sm text-blue-600 hover:underline">Clear</a></button>
-        </div>
-      </div>
-    </form>
+          <div class="mt-4">
+            <label class="block" for="file_input">Masukkan Gambar anda [Tinggalkan kosong jika tiada perubahan]</label>
+            <input type="file" name="image">
+          </div>
+          <div class="mt-4">
+            <label class="block">IC</label>
+            <input name="IC" type="text" readonly="readonly" class="w-full px-4 py-2 mt-2 border bg-gray-500 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" maxlength="5" value="<?php echo $ic; ?>">
+          </div>
+          <div class="mt-4">
+            <label class="block">Nama</label>
+            <input name="NAMES" type="text" class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" value="<?php echo $NAME; ?>">
+          </div>
+          <div class="flex items-baseline justify-between mt-4">
+            <button type="submit" name="update" class="px-6 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Kemaskini</button>
+            <button type="reset"><a class="text-sm text-blue-600 hover:underline">Padam</a></button>
+          </div>
+      </form>
+    </div>
   </div>
 </div>
+
+<?php include "Components/footer.php"; ?>
+
+
 
 <?php include "Components/footer.php"; ?>
