@@ -46,10 +46,10 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
             </div>
             <ul class="py-2" aria-labelledby="user-menu-button">
               <li>
-                <a href="profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                <a href="profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tetapan</a>
               </li>
               <li>
-                <a href="components/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                <a href="components/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log Keluar</a>
               </li>
             </ul>
           </div>
