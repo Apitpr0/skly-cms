@@ -12,7 +12,7 @@
     colors: {
         background: '#EBC7E6',
         card: '#645CBB',
-        primary: '#F5F3FF',
+        primary: '#BFACE2',
         text: '#FFFFFF',
     },
   },
