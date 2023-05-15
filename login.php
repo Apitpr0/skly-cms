@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
         $is_blocked = $row['is_blocked'];
 
         if ($is_blocked == 1) {
-            $msg = "Akaun anda telah diblok. Sila hubungi pentadbir sistem.";
+            $msg = "Akaun anda telah disekat. Sila hubungi pentadbir sistem.";
         } else {
             $hashed_password = hash('sha512', $password);
             if ($hashed_password === $passDB) {
@@ -104,7 +104,7 @@ if (isset($_POST['submit'])) {
             </a>
             <br>
             <a href="reset_password.php" class="mt-2 inline-block text-blue-500 hover:text-blue-700 font-medium">
-                Lupa Kata Laluan?<span class="underline">Set semula di sini</span>
+                Lupa Kata Laluan? <span class="underline">Set semula di sini</span>
             </a>
 
 
