@@ -31,7 +31,8 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
       <ul class="font-medium flex flex-col border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
         <?php foreach ($links as $link) { ?>
           <li>
-            <a href="<?php echo $link['url']; ?>" class="block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><?php echo $link['name']; ?></a>
+            <a href="<?php echo $link['url']; ?>" class="block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue
+            -500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"><?php echo $link['name']; ?></a>
           </li>
         <?php } ?>
         <div class="flex items-center md:order-2">
@@ -40,16 +41,16 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
             <img class="w-10 h-10 rounded-full" src="<?php echo $picture_base64; ?>" alt="components/assets/img/emptyprofilepicture.jpg">
           </button>
           <!-- Dropdown menu -->
-          <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+          <div class="z-50 hidden my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
             <div class="px-4 py-3">
-              <span class="block text-sm text-gray-900 dark:text-white"><?php echo $NAME; ?></span>
+              <span class="block text-sm text-black dark:text-white"><?php echo $NAME; ?></span>
             </div>
             <ul class="py-2" aria-labelledby="user-menu-button">
               <li>
-                <a href="profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tetapan</a>
+                <a href="profile.php" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tetapan</a>
               </li>
               <li>
-                <a href="components/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log Keluar</a>
+                <a href="components/logout.php" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log Keluar</a>
               </li>
             </ul>
           </div>
