@@ -1,7 +1,11 @@
 <?php
 include('Components/db/db_connection.php');
 session_start();
-
+$ic = $_SESSION["ic"];
+$result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
+while ($res = mysqli_fetch_array($result)) {
+  $NAME = $res["name"];
+}
 $links = array(
   array("name" => "Laman Utama", "url" => "index.php"),
   array("name" => "Tempah", "url" => "booking.php"),
@@ -11,61 +15,44 @@ $links = array(
 );
 $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
 ?>
-
-<nav class="w-full bg-transparent">
-  <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-16">
-      <!-- Logo and company name -->
-      <a href="index.php" class="flex-shrink-0 flex items-center">
-        <img class="h-12 w-12" src="components/assets/img/school_logo.png" alt="Logo">
-        <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
-      </a>
-
-      <!-- Hamburger menu -->
-      <div class="flex sm:hidden">
-        <button type="button" class="text-black hover:bg-gray-700 hover:text-white inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false" onclick="toggleMobileMenu()">
-          <span class="sr-only">Open main menu</span>
-          <!-- Hamburger icon -->
-          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-          <!-- Close icon -->
-          <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Link and profile picture -->
-      <div class="hidden sm:flex sm:items-center sm:ml-6" id="mobile-menu">
+<nav class=" w-full border-gray-200">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a href="index.php" class="flex items-center bg-card p-4 rounded-lg">
+        <img src="components/assets/img/school_logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
+        <span class="text-white font-bold ml-2">Sistem Pengurusan Kaunseling</span>
+    </a>
+    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+      <span class="sr-only">Open main menu</span>
+      <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+    </button>
+    <div class="bg-card p-4 rounded-lg hidden w-full md:block md:w-auto" id="navbar-default">
+      <ul class=" font-medium flex flex-col  border border-gray-100 rounded-lg  md:flex-row md:space-x-8 md:mt-0 md:border-0">
         <?php foreach ($links as $link) { ?>
-          <a href="<?php echo $link['url']; ?>" class="text-black hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium mr-4"><?php echo $link['name']; ?></a>
+          <li>
+          <a href="<?php echo $link['url']; ?>" class="block py-2 pl-3 pr-4 text-text rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><?php echo $link['name']; ?></a>
+        </li>
         <?php } ?>
-        <a href="profile.php">
+        <div class="flex items-center md:order-2">
+      <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
           <img class="w-10 h-10 rounded-full" src="<?php echo $picture_base64; ?>" alt="components/assets/img/emptyprofilepicture.jpg">
-        </a>
+      </button>
+      <!-- Dropdown menu -->
+      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white"><?php echo $NAME; ?></span>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li>
+            <a href="profile.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+          </li>
+          <li>
+            <a href="components/logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+          </li>
+        </ul>
       </div>
+  </div>
+      </ul>
     </div>
   </div>
 </nav>
-
-<script>
-  function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.toggle('hidden');
-  }
-
-  function closeMobileMenu() {
-    const mobileMenu = document.getElementById('mobile-menu');
-    mobileMenu.classList.add('hidden');
-  }
-  window.addEventListener('resize', function() {
-    const windowWidth = window.innerWidth;
-    const breakpoint = 640; // Adjust this value to your desired breakpoint
-
-    if (windowWidth > breakpoint) {
-      closeMobileMenu();
-    }
-  });
-  
-</script>
