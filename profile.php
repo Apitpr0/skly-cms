@@ -103,7 +103,3 @@ while ($res = mysqli_fetch_array($result)) {
 </div>
 
 <?php include "Components/footer.php"; ?>
-
-
-
-<?php include "Components/footer.php"; ?>
