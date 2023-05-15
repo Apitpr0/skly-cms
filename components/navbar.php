@@ -18,7 +18,7 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
 <nav class="w-full border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="index.php" class="flex items-center bg-card p-4 rounded-lg">
-      <img src="components/assets/img/school_logo.png" class="h-8 mr-3" alt="Flowbite Logo" />
+      <img src="components/assets/img/school_logo.png" class="h-12 mr-3" alt="Flowbite Logo" />
       <span class="text-black font-bold ml-2">Sistem Pengurusan Kaunseling</span>
     </a>
     <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
