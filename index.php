@@ -1,7 +1,7 @@
 <?php
-include('Components/navbar.php');
 include('Components/db/db_connection.php');
 include('Components/header.php');
+include('Components/navbar.php');
 include('Components/auth.php');
 
 //Add benda ni dalam user page saja

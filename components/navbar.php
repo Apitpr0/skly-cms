@@ -1,11 +1,6 @@
 <?php
 include('Components/db/db_connection.php');
 session_start();
-$ic = $_SESSION["ic"];
-$result = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");
-while ($res = mysqli_fetch_array($result)) {
-  $NAME = $res["name"];
-}
 $links = array(
   array("name" => "Laman Utama", "url" => "index.php"),
   array("name" => "Tempah", "url" => "booking.php"),
@@ -42,9 +37,6 @@ $picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8
           </button>
           <!-- Dropdown menu -->
           <div class="z-50 hidden my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
-            <div class="px-4 py-3">
-              <span class="block text-sm text-black dark:text-white"><?php echo $NAME; ?></span>
-            </div>
             <ul class="py-2" aria-labelledby="user-menu-button">
               <li>
                 <a href="profile.php" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tetapan</a>
