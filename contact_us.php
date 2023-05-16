@@ -68,11 +68,60 @@ $mail->SMTPSecure = "tls";
 $mail->Port = "587";
 $mail->Username = "apitpro123@gmail.com";
 $mail->Password = $gm_pass;
-$mail->Subject = "SKLY-CMS: Mesej dari Pengguna";
-$mail->setFrom($_POST['email']);
-$mail->addAddress("apitpro123@gmail.com");
+$mail->Subject = "SKLY-CMS: Message from User";
+$mail->setFrom("apitpro123@gmail.com");
+$mail->addAddress($_POST['email']);
 $mail->isHTML(true);
-$mail->Body = ($_POST['message']);
+
+// Prepare the message template
+$messageTemplate = "
+    <html>
+    <head>
+        <style>
+            /* CSS styles for the message template */
+            /* You can customize this further based on your needs */
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f1f1f1;
+            }
+            .container {
+                max-width: 600px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #ffffff;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+            .logo {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+            .message {
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='logo'>
+                <img src='test-fyp\components\assets\img\school_logo.png' alt='Logo' width='200'>
+            </div>
+            <h2>SKLY-CMS: Pesanan Dari Pengguna</h2>
+            <div class='message'>
+                %s
+            </div>
+        </div>
+    </body>
+    </html>
+";
+
+// Generate the message body by inserting the user's message into the template
+$messageBody = sprintf($messageTemplate, $_POST['message']);
+$mail->Body = $messageBody;
+
 $mail->send();
 ?>
 <?php include('Components/footer.php'); ?>
