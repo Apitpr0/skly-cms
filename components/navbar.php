@@ -8,6 +8,7 @@ $links = array(
   array("name" => "Blog", "url" => "blog.php"),
   array("name" => "Hubungi Kami", "url" => "contact_us.php")
 );
+$picture_base64 = !empty($row['profile_picture']) ? 'data:image/jpg;charset=utf8;base64,' . base64_encode($row['profile_picture']) : "components/assets/img/emptyprofilepicture.jpg";
 ?>
 <nav class="w-full border-gray-200">
   <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -24,19 +25,29 @@ $links = array(
     <div class="bg-card p-4 rounded-lg hidden w-full md:block md:w-auto" id="navbar-default">
       <ul class="font-medium flex flex-col border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
         <?php foreach ($links as $link) { ?>
-
+          <li>
+            <a href="<?php echo $link['url']; ?>" class="block py-2 pl-3 pr-4 text-black rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-black md:dark:hover:text-blue
+            -500 dark:hover:bg-gray-700 dark:hover:text-black md:dark:hover:bg-transparent"><?php echo $link['name']; ?></a>
+          </li>
         <?php } ?>
         <div class="flex items-center md:order-2">
           <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
             <span class="sr-only">Open user menu</span>
-            <a href="profile.php">
-              <img class="w-10 h-10 rounded-full" src="components/assets/img/emptyprofilepicture.jpg" alt="components/assets/img/emptyprofilepicture.jpg">
-            </a>
+            <img class="w-10 h-10 rounded-full" src="<?php echo $picture_base64; ?>" alt="components/assets/img/emptyprofilepicture.jpg">
           </button>
+          <!-- Dropdown menu -->
+          <div class="z-50 hidden my-4 text-base list-none bg-black divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+            <ul class="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a href="profile.php" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Tetapan</a>
+              </li>
+              <li>
+                <a href="components/logout.php" class="block px-4 py-2 text-sm text-black hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Log Keluar</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </ul>
     </div>
-  </div>
-  </ul>
-  </div>
   </div>
 </nav>
