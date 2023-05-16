@@ -12,7 +12,7 @@ if ($_SESSION['is_admin'] != 1) {
 
 
 ?>
-<h1 class="pl-10 font-medium leading-tight text-5xl pt-1 text-black">ADMIN DASHBOARD</h1>
+<h1 class="pl-10 font-medium leading-tight text-5xl pt-1 text-black">LAMAN PENTADBIR</h1>
 <div class="p-8 m-8 bg-gray-400 rounded-lg">
   <?php
   $data = mysqli_query($connection, "SELECT * FROM users WHERE ic='$ic'");

@@ -2,7 +2,6 @@
 include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
-include('Components/auth.php');
 ?>
 
 <div class="container mx-auto px-4">

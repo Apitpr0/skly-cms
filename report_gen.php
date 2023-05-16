@@ -35,6 +35,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $html .= '<td class="px-4 py-2">' . $row['status'] . '</td>';
     $html .= '<td class="px-4 py-2">' . $row['topics'] . '</td>';
     $html .= '</tr>';
+    $html .= '<br>'; // Add line break
 }
 
 // Close the table and HTML tags
