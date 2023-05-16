@@ -2,7 +2,7 @@
 include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
-include('Components/auth.php');
+
 
 $ic = $_SESSION['ic'];
 if ($_SESSION['is_admin'] != 1) {

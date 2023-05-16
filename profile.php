@@ -2,7 +2,7 @@
 include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
-include('Components/auth.php');
+
 $is_admin = $_SESSION['is_admin'];
 if (isset($_POST["update"])) {
   $fileName = basename($_FILES["image"]["name"]);
