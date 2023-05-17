@@ -11,7 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$session_date = $_POST['session-date'];
 	$status = $_POST['counseling-type'];
 	$icnum = $_POST['client-ic'];
-	$phone = $_POST['client-phone'];
 	$topics = $_POST['client-topic'];
 
 	//Convert session_time to datetime format
@@ -29,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>';
 	} else {
 		// Insert data into db
-		$query = "INSERT INTO appointment (name,appointment_date,status,topics,phone_number) VALUES ('$counselor_name','$session_datetime','$status','$topics','$phone')";
+		$query = "INSERT INTO appointment (name,appointment_date,status,topics) VALUES ('$counselor_name','$session_datetime','$status','$topics')";
 		mysqli_query($connection, $query);
 
 		if (mysqli_affected_rows($connection) > 0) {
@@ -112,11 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 				<div>
 					<label for="client-name" class="block text-gray-700 font-bold mb-2">Nombor IC:</label>
 					<input type="text" id="client-ic" name="client-ic" class="w-full p-2 border rounded-md" value="<?php echo $_SESSION['ic']; ?>" readonly>
-				</div>
-
-				<div>
-					<label for="client-phone" class="block text-gray-700 font-bold mb-2">Nombor Telefon:</label>
-					<input type="tel" id="client-phone" name="client-phone" class="w-full p-2 border rounded-md" required>
 				</div>
 
 				<button type="submit" name="submit" class="bg-blue-500
