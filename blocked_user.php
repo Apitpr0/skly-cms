@@ -19,7 +19,7 @@ if (isset($_POST["update"])) {
 
     <div class="flex justify-between items-center mb-8">
         <h1 class="text-2xl font-bold">Pengguna Disekat</h1>
-        <a href="dashboard_admin.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Paparan Admin</a>
+        <a href="dashboard_admin.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Paparan </a>
     </div>
 
     <table class="w-full border-collapse">

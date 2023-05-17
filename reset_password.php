@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
 
     // Check if the passwords match
     if ($password != $confirm_password) {
-        echo '<div class="bg-red-500 text-white font-bold py-2 px-4 rounded mb-4">Passwords do not match</div>';
+        echo '<div class="bg-red-500 text-white font-bold py-2 px-4 rounded mb-4">Kata Laluan tidak sama</div>';
     } else {
         // Hash the password using SHA-512
         $hashed_password = hash('sha512', $password);

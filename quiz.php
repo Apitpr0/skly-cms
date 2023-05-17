@@ -87,9 +87,9 @@ include('components/navbar.php');
                     $score += $answer;
                 }
             }
-            if ($score < 10) {
+            if ($score < 11) {
                 echo "<p class='mt-4 font-bold'>Anda mungkin perlu mencari bantuan dari teman atau orang dewasa untuk mengatasi stres anda.</p>";
-            } else if ($score < 15) {
+            } else if ($score < 30) {
                 echo "<p class='mt-4 font-bold'>Anda memiliki beberapa strategi yang baik untuk mengatasi stres dan kecemasan, tetapi mungkin masih perlu beberapa bantuan dari waktu ke waktu.</p>";
             } else {
                 echo "<p class='mt-4 font-bold'>Anda memiliki strategi yang baik untuk mengatasi stres dan kecemasan, dan mampu mengatasi situasi yang menantang dengan baik.</p>";

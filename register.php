@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     } else {
         $hashed_password = hash('sha512', $password);
         if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', '$nama', '$hashed_password')")) {
-            $msg = "An error occurred while registering. Please try again.";
+            $msg = "Ralat berlaku semasa mendaftar, sila cuba lagi";
         } else {
             header("Location: login.php");
             exit;

@@ -31,7 +31,7 @@ $result2 = mysqli_query($connection, $query2);
           <p class="text-gray-700 mb-4"><?php echo substr($row2['post_content'], 0, 150); ?>...</p>
           <div class="flex justify-between items-center">
             <span class="text-gray-600 text-sm"><?php echo date('d M Y', strtotime($row2['date_published'])); ?></span>
-            <a href="blog_post.php?id=<?php echo $row2['id']; ?>" class="text-blue-500 text-sm font-semibold hover:text-blue-600">Baca Lagi....</a>
+            <a href="blog_post.php?id=<?php echo $row2['id']; ?>" class="text-blue-500 text-sm font-semibold hover:text-blue-600">Baca lagi</a>
           </div>
 
         </div>

@@ -51,7 +51,7 @@ if (isset($_POST['submit'])) {
             echo "Tiada rekod temujanji dijumpai.";
         }
     } else {
-        echo "Invalid request.";
+        echo "Permintaan tidak sah";
     }
     ?>
 </div>
