@@ -9,13 +9,13 @@ if (isset($_POST['submit'])) {
     $is_admin = isset($_POST['is_admin']) ? 1 : 0; // check if the checkbox is checked
 
     if (empty($ic)) {
-        $msg = "IC field cannot be empty";
+        $msg = "Kotak IC tidak boleh kosong";
     } elseif (mysqli_num_rows(mysqli_query($connection, "SELECT * FROM USERS WHERE ic='$ic'")) > 0) {
-        $msg = "IC already exists";
+        $msg = "IC telah wujud dalam pangkalan data";
     } elseif ($password != $cPass) {
-        $msg = "Passwords do not match";
+        $msg = "Kata Laluan tidak sama";
     } elseif (strlen($password) < 8 || !preg_match("#[0-9]+#", $password) || !preg_match("#[a-zA-Z]+#", $password)) {
-        $msg = "Password must be at least 8 characters long and contain at least one letter and one number";
+        $msg = "Kata Laluan mesti sekurang-kurangnya 8 aksara dan mengandungi sekurang-kurangnya satu nombor dan satu huruf";
     } else {
         $hashed_password = hash('sha512', $password);
         if (!mysqli_query($connection, "INSERT INTO USERS (ic, name, password) VALUES ('$ic', '$nama', '$hashed_password')")) {

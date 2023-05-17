@@ -19,7 +19,7 @@ if (isset($_POST["update"])) {
       "UPDATE users SET profile_picture='$imgContent',name='$NAMES' WHERE ic='$IC'"
     );
   } else {
-    $errorMessage = "Invalid file type. Allowed file types are " . implode(", ", $allowTypes);
+    $errorMessage = "Jenis fail tidak sah. Jenis fail yang dibenarkan ialah " . implode(", ", $allowTypes);
     die($errorMessage);
   }
 } else if (isset($_POST['submit2'])) {
