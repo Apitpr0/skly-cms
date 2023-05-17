@@ -2,6 +2,39 @@
 include('Components/db/db_connection.php');
 include('Components/header.php');
 include('Components/navbar.php');
+
+// Define variables for form data
+$confession = '';
+$confessionError = '';
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Sanitize and validate the confession message
+  $confession = sanitizeInput($_POST['confession']);
+  if (empty($confession)) {
+    $confessionError = 'Sila isi ruangan pengakuan.';
+  }
+
+  // If there are no errors, insert the confession into the database
+  if (empty($confessionError)) {
+    $sql = "INSERT INTO anonymous_confession (message) VALUES ('$confession')";
+    if (mysqli_query($connection, $sql)) {
+      $_SESSION['success_message'] = '<strong>Pengakuan anda telah berjaya dihantar.</strong>';
+    } else {
+      $_SESSION['error_message'] = 'Maaf, terdapat masalah dalam memproses pengakuan anda.';
+    }
+  }
+}
+
+// Function to sanitize user input
+function sanitizeInput($data)
+{
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+
 ?>
 
 <div class="container mx-auto px-4">
@@ -9,20 +42,21 @@ include('Components/navbar.php');
 
   <form method="post" action="anonconn.php">
     <label for="confession" class="block mb-2 font-bold">Pengakuan anda:</label>
-    <textarea id="confession" name="confession" class="block w-full px-3 py-2 border rounded-md mb-4" placeholder="Tulis pengakuan anda di sini..."></textarea>
+    <textarea id="confession" name="confession" class="block w-full px-3 py-2 border rounded-md mb-4" placeholder="Tulis pengakuan anda di sini..."><?php echo htmlspecialchars($confession); ?></textarea>
 
-    <?php
-    // Check if there is a success message in the session, and display it if it exists
-    if (isset($_SESSION['success_message'])) {
-      echo "<p class='text-green-500 mb-4'>" . $_SESSION['success_message'] . "</p>";
-      unset($_SESSION['success_message']); // Clear the success message from the session
-    }
-    // Check if there is an error message in the session, and display it if it exists
-    if (isset($_SESSION['error_message'])) {
-      echo "<p class='text-red-500 mb-4'>" . $_SESSION['error_message'] . "</p>";
-      unset($_SESSION['error_message']); // Clear the error message from the session
-    }
-    ?>
+    <?php if (!empty($confessionError)) : ?>
+      <p class="text-red-500 mb-4"><?php echo $confessionError; ?></p>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['success_message'])) : ?>
+      <p class="text-green-500 mb-4"><?php echo $_SESSION['success_message']; ?></p>
+      <?php unset($_SESSION['success_message']); ?>
+    <?php endif; ?>
+
+    <?php if (isset($_SESSION['error_message'])) : ?>
+      <p class="text-red-500 mb-4"><?php echo $_SESSION['error_message']; ?></p>
+      <?php unset($_SESSION['error_message']); ?>
+    <?php endif; ?>
 
     <button type="submit" name="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Hantar</button>
   </form>
@@ -37,7 +71,7 @@ include('Components/navbar.php');
     echo "<div class='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>";
     while ($row = mysqli_fetch_assoc($result)) {
       echo "<div class='bg-white rounded-lg shadow-md p-6'>";
-      echo "<p class='text-gray-700'>" . $row["message"] . "</p>";
+      echo "<p class='text-gray-700'>" . htmlspecialchars($row["message"]) . "</p>";
       echo "</div>";
     }
     echo "</div>";
